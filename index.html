@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Матвей Борисов — Senior PM · AI Architect</title>
+<meta name="description" content="Проектирование ИИ-решений, автоматизация бизнеса и управление продуктами. Могу заменять целые IT-отделы в одно лицо.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://matveycv.ru/">
+<meta property="og:title" content="Матвей Борисов — Senior PM · AI Architect">
+<meta property="og:description" content="Проектирование ИИ-решений, автоматизация бизнеса и управление продуктами. Senior-экспертиза по цене мидла.">
+<meta property="og:image" content="https://matveycv.ru/og-image.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://matveycv.ru/">
+<meta property="twitter:title" content="Матвей Борисов — Senior PM · AI Architect">
+<meta property="twitter:description" content="Проектирование ИИ-решений, автоматизация бизнеса и управление продуктами. Senior-экспертиза по цене мидла.">
+<meta property="twitter:image" content="https://matveycv.ru/og-image.jpg">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="public/icon.svg">
+<link rel="mask-icon" href="public/icon.svg" color="#131311">
+<link rel="apple-touch-icon" href="public/icon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --serif: 'Instrument Serif', serif;
+  --mono:  'Geist Mono', monospace;
+  --bg:    #e8e5e0;
+  --peek:  48px;
+  --gap:   12px;
+  --pad:   24px;
+}
+
+html, body { height: 100%; overflow: hidden; background: var(--bg); font-family: var(--mono); color: #1a1a1a; }
+
+/* ─── TOP BAR ─── */
+.bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 44px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--pad); z-index: 200;
+  transition: opacity .3s;
+}
+.bar-name { font-size: 11px; letter-spacing: .08em; opacity: .4; }
+.bar-right { display: flex; align-items: center; gap: 16px; }
+.bar-status { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; display: flex; align-items: center; gap: 6px; opacity: .38; }
+.pulse { width: 6px; height: 6px; border-radius: 50%; background: #3d9142; animation: pls 2s ease infinite; }
+@keyframes pls { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+/* ─── NAV BAR (Magnifier Style) ─── */
+.dots {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 4px; align-items: center; z-index: 200;
+  transition: opacity .3s;
+  background: rgba(255,255,255,0.4);
+  padding: 4px;
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0,0,0,0.03);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+}
+.dot {
+  font-family: var(--mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(26,26,26,0.4);
+  background: transparent;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+  border-radius: 8px;
+  white-space: nowrap;
+  position: relative;
+}
+.dot.on {
+  background: #fff;
+  color: #1a1a1a;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.02);
+  transform: scale(1.05) translateY(-2px);
+}
+.dot.on::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 4px; border-radius: 50%; background: currentColor;
+}
+.bento-dot {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 6px;
+  transition: all 0.2s;
+  color: #1a1a1a;
+}
+.bento-dot:hover { background: #fff; transform: scale(1.05); }
+.bento-dot svg { width: 12px; height: 12px; opacity: 0.5; }
+
+@media (max-width: 600px) {
+  .dots { gap: 2px; padding: 3px; bottom: 16px; width: calc(100% - 32px); justify-content: center; overflow-x: auto; scrollbar-width: none; }
+  .dots::-webkit-scrollbar { display: none; }
+  .dot { padding: 5px 8px; font-size: 8px; }
+}
+
+/* ─── VIEWPORT + TRACK ─── */
+.viewport {
+  position: fixed; top: 44px; left: 0; right: 0; bottom: 0; overflow: hidden;
+  transition: opacity .3s;
+}
+.track {
+  display: flex; align-items: center;
+  height: 100%;
+  padding: 20px var(--pad) 80px;
+  gap: var(--gap);
+  overflow-x: scroll; overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.track::-webkit-scrollbar { display: none; }
+
+/* ─── CARD ─── */
+.card {
+  --cw: calc(100vw - var(--pad)*2 - var(--peek) - var(--gap));
+  flex: 0 0 var(--cw);
+  height: 100%;
+  max-width: 880px;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  border-radius: 18px;
+  padding: 36px 40px;
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+  filter: brightness(.9);
+  transform: scale(0.96);
+  transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+  will-change: transform, filter;
+  cursor: pointer;
+}
+.card.active { filter: brightness(1); transform: scale(1); cursor: default; }
+.card:last-child { margin-right: 0; }
+
+@media (max-width: 600px) {
+  :root { --pad: 16px; --peek: 24px; }
+  .card { padding: 20px 18px; border-radius: 14px; --cw: calc(100vw - 60px); }
+  .serif-h { font-size: 32px; }
+  .hero-name { font-size: 48px; margin-bottom: 12px; }
+  .hero-quote { margin-bottom: 16px; font-size: 11px; }
+  .tags { gap: 4px; }
+  .tg { padding: 3px 8px; font-size: 8px; }
+  .ct-hl { font-size: 38px; margin-bottom: 20px; }
+  .ct-links { margin-bottom: 8px; }
+  .ct-a { padding: 10px 16px; }
+}
+
+/* themes */
+.c-dark  { background: #131311; color: #f0ede8; }
+.c-cream { background: #f4f1eb; color: #1a1a1a; }
+.c-green { background: #14201a; color: #cfe8d2; }
+.c-slate { background: #13161f; color: #d8dff0; }
+.c-sand  { background: #1e1a12; color: #f0e4cc; }
+
+/* ── BG LOGO ── */
+.bg-logo {
+  position: absolute; top: 12%; right: 40px;
+  font-family: var(--serif); font-size: clamp(60px, 10vw, 120px);
+  line-height: 1; letter-spacing: -0.04em;
+  opacity: 0.1; pointer-events: none;
+  text-transform: uppercase; font-style: italic;
+  transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+  transform: translateX(30px);
+}
+.active .bg-logo { opacity: 0.15; transform: translateX(0); }
+.c-cream .active .bg-logo { opacity: 0.18; }
+.c-green .active .bg-logo { opacity: 0.2; }
+
+.cn { position: absolute; top: 36px; right: 40px; font-size: 9px; letter-spacing: .12em; opacity: .22; }
+
+/* ─── SHARED PRIMITIVES ─── */
+.lbl { font-size: 10px; letter-spacing: .13em; text-transform: uppercase; opacity: .36; }
+.serif-h {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5.5vw, 70px);
+  line-height: .95; letter-spacing: -.022em;
+}
+.serif-h em { font-style: italic; opacity: .3; }
+.body-txt { font-size: 15px; line-height: 1.75; opacity: .55; max-width: 540px; }
+.tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.tg {
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 4px 11px; border: 1px solid currentColor;
+  border-radius: 100px; opacity: .35;
+}
+
+/* ══════════════════════════════════════════
+   BENTO OVERLAY
+══════════════════════════════════════════ */
+.bento-overlay {
+  position: fixed; inset: 0; z-index: 300;
+  display: none; flex-direction: column;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+.bento-overlay.open { opacity: 1; pointer-events: all; display: flex; }
+
+.bento-bg {
+  position: absolute; inset: 0;
+  background: #14120e;
+}
+
+.bento-inner {
+  position: relative; z-index: 1;
+  flex: 1; overflow-y: auto;
+  padding: 24px var(--pad) 40px;
+  display: flex; flex-direction: column; gap: 10px;
+  scrollbar-width: none;
+}
+.bento-inner::-webkit-scrollbar { display: none; }
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(140px, auto);
+  gap: 12px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bc {
+  border-radius: 18px;
+  padding: 24px 28px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform .45s cubic-bezier(0.32, 0.72, 0, 1), filter .2s ease, border-radius .4s ease;
+  display: flex; flex-direction: column;
+}
+.bc > * { transition: opacity 0.2s ease; }
+.bc.animating > * { opacity: 0 !important; }
+.bc:hover { transform: scale(1.01); filter: brightness(1.05); }
+.bc:active { transform: scale(.98); }
+
+/* Desktop Viewport-Fit Layout */
+@media (min-width: 1024px) {
+  .bento-inner {
+    height: 100vh;
+    padding: 20px;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    height: 96vh;
+    max-width: 1800px;
+    gap: 14px;
+    width: 100%;
+  }
+  .bc-hero    { grid-column: 1 / span 4; grid-row: 1 / span 4; }
+  .bc-now     { grid-column: 5 / span 4; grid-row: 1 / span 4; }
+  .bc-earlier { grid-column: 9 / span 4; grid-row: 1 / span 4; }
+  .bc-qugo    { grid-column: 1 / span 12; grid-row: 5 / span 3; }
+  .bc-comp    { grid-column: 1 / span 6; grid-row: 8 / span 4; }
+  .bc-stack   { grid-column: 7 / span 6; grid-row: 8 / span 4; }
+  .bc-contact { grid-column: 1 / span 12; grid-row: 12 / span 1; }
+  
+  .bc-chips { gap: 8px; margin-top: 12px; }
+  .bc-chip { font-size: 12px; padding: 6px 14px; }
+  .bc-body { font-size: 15px; line-height: 1.5; }
+  .bc-title { margin-bottom: 12px; font-size: clamp(20px, 2.2vw, 28px); white-space: nowrap; }
+  .bc-label { margin-bottom: 12px; }
+}
+
+@media (max-width: 900px) {
+  .bento-grid { grid-template-columns: repeat(4, 1fr); max-width: 100%; gap: 10px; }
+  .bc-hero, .bc-now, .bc-comp, .bc-stack { grid-column: span 2; }
+  .bc-qugo { grid-column: span 4; }
+  .bc-earlier { grid-column: span 2; }
+  .bc-contact { grid-column: span 4; }
+}
+
+@media (max-width: 600px) {
+  .bento-inner { padding: 12px var(--pad) 24px; }
+  .bento-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+    grid-auto-rows: minmax(105px, auto); 
+    gap: 8px; 
+  }
+  .bc-hero, .bc-now, .bc-qugo, .bc-earlier, .bc-comp, .bc-stack { grid-column: span 1; grid-row: span 1; }
+  .bc-contact { grid-column: span 2; }
+  .bc { padding: 14px 16px; border-radius: 12px; }
+  .bc-label { font-size: 8px; margin-bottom: 6px; }
+  .bc-title { font-size: 18px; margin-bottom: 6px; }
+  .bc-body { font-size: 11px; line-height: 1.4; }
+  .bc-tags { padding-top: 8px; gap: 4px; }
+  .bc-tag { font-size: 8px; padding: 2px 7px; }
+  .bc-comp-list { margin-top: 6px; }
+  .bc-comp-row { font-size: 11px; padding: 4px 0; }
+  .bc-chips { margin-top: 4px; gap: 3px; }
+  .bc-chip { font-size: 9px; padding: 2px 7px; }
+  .bc-contact .bc-title { font-size: 16px; }
+  .bc-cl { font-size: 9px; padding: 8px 14px; }
+  .bc-clinks { gap: 6px; }
+}
+
+.bc-hero    { background: #131311; color: #f0ede8; }
+.bc-now     { background: #f4f1eb; color: #1a1a1a; }
+.bc-qugo    { background: #14201a; color: #cfe8d2; }
+.bc-earlier { background: #f4f1eb; color: #1a1a1a; }
+.bc-comp    { background: #13161f; color: #d8dff0; }
+.bc-stack   { background: #f4f1eb; color: #1a1a1a; }
+.bc-contact { background: #131311; color: #f0ede8; }
+
+.bc-label { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; opacity: .35; margin-bottom: 12px; }
+.bc-title { font-family: var(--serif); font-size: clamp(24px, 3.5vw, 42px); line-height: .95; letter-spacing: -.02em; margin-bottom: 12px; }
+.bc-title em { font-style: italic; opacity: .32; }
+.bc-body { font-size: 14px; line-height: 1.6; opacity: .55; }
+.bc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 16px; }
+.bc-tag { font-size: 9px; letter-spacing: .09em; text-transform: uppercase; padding: 4px 10px; border: 1px solid currentColor; border-radius: 100px; opacity: .35; }
+
+.bc-contact-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; height: 100%; }
+.bc-contact .bc-title { font-size: clamp(20px, 3vw, 32px); margin-bottom: 0; }
+.bc-clinks { display: flex; gap: 10px; }
+.bc-cl { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: inherit; text-decoration: none; padding: 10px 20px; border: 1px solid rgba(255,255,255,.2); border-radius: 100px; opacity: .6; transition: all .2s; }
+.bc-cl:hover { opacity: 1; border-color: rgba(255,255,255,.5); }
+.bc-cl.p { background: #f4f1eb; color: #1a1a1a; border-color: transparent; opacity: 1; }
+
+/* chips variants */
+.bc-chips-grid { display: none; }
+.bc-chips-compact { display: flex; flex-wrap: wrap; gap: 4px; }
+
+@media (min-width: 1024px) {
+  .bc-chips-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; }
+  .bc-chips-compact { display: none; }
+}
+
+.bc-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.bc-chip { font-size: 11px; padding: 3px 9px; border: 1px solid rgba(26,26,26,.15); border-radius: 100px; opacity: .6; }
+.bc-chip.b { font-weight: 500; opacity: .85; border-color: rgba(26,26,26,.28); }
+
+.bc-stats { display: flex; gap: 32px; margin-top: 16px; }
+.bc-sv { font-family: var(--serif); font-size: 32px; line-height: 1; display: block; }
+.bc-sl { font-size: 9px; letter-spacing: .1em; text-transform: uppercase; opacity: .32; margin-top: 4px; display: block; }
+
+.bc-comp-list { display: flex; flex-direction: column; gap: 2px; margin-top: 12px; }
+.bc-comp-row { font-size: 13px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.06); opacity: .7; display: flex; align-items: center; gap: 8px; }
+.bc-comp-row::before { content:''; width:4px; height:4px; border-radius:50%; background:rgba(255,255,255,.3); flex-shrink:0; }
+
+</style>
+</head>
+<body>
+
+<div class="bar" id="bar">
+  <span class="bar-name">Matvey Borisov</span>
+  <div class="bar-right">
+    <span class="bar-status"><span class="pulse"></span>Открыт для предложений · Senior/Lead</span>
+  </div>
+</div>
+
+<div class="dots" id="dots"></div>
+
+<div class="viewport" id="viewport">
+  <div class="track" id="track">
+
+    <!-- 1 · HERO -->
+    <div class="card c-dark" id="c1" data-i="0">
+      <span class="cn">01/07</span>
+      <div class="lbl" style="margin-bottom:14px">
+        <span class="pulse" style="display:inline-block;vertical-align:middle;margin-right:8px"></span>Senior / Lead
+      </div>
+      <h1 class="hero-name">Матвей<br><em>Борисов</em></h1>
+      <p class="hero-sub">Связующее звено между продуктовым видением и технической реальностью.</p>
+      <p class="hero-quote">Impact Engineering: проектирование ИИ-решений и автоматизации, напрямую влияющих на прибыль.</p>
+      <div class="tags" style="margin-bottom:28px">
+        <span class="tg">Senior PM</span>
+        <span class="tg">AI Engineer</span>
+        <span class="tg">Продуктовый аналитик</span>
+      </div>
+      <div class="hero-links">
+        <a href="https://t.me/MentalProtector" target="_blank">Telegram</a>
+        <a href="https://www.linkedin.com/in/matvei-borisov-a0a4a5123/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- 2 · NOW -->
+    <div class="card c-cream" id="c2" data-i="1">
+      <span class="cn" style="color:#1a1a1a">02/07</span>
+      <div class="bg-logo">Alfatapes</div>
+      <div class="lbl">Сейчас · 2025 — н.в.</div>
+      <div class="now-body">
+        <h2 class="serif-h">Cofounder &<br><em>AI Automation Lead</em></h2>
+        <p class="body-txt">Проектирование автономных ИИ-агентов для CRM и контента. IT-консалтинг и запуск MVP для сторонних заказчиков.</p>
+        <div class="tags">
+          <span class="tg">ИИ-оркестрация</span>
+          <span class="tg">Python</span>
+          <span class="tg">LLM</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 · QUGO -->
+    <div class="card c-green" id="c3" data-i="2">
+      <span class="cn">03/07</span>
+      <div class="bg-logo">Qugo</div>
+      <div class="exp-hd" style="margin-top: 24px;">
+        <span class="lbl">2020 — 2024</span>
+      </div>
+      <div class="exp-body">
+        <h2 class="serif-h">Project Manager /<br><em>Product Delivery</em></h2>
+        <p class="body-txt">Провёл продукт от сырого MVP до высоконагруженной системы с миллиардными оборотами. Масштабировал процессы и устранял технические затыки.</p>
+        <div class="stats">
+          <div style="flex: 1 1 100%; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 4px;">
+            <span class="sv" style="font-size: 18px; font-family: var(--mono); text-transform: uppercase; opacity: 0.8;">Process Evolution</span>
+            <span class="sl">Развитие продуктовых процессов в условиях 5-кратного роста штата и регулярных структурных изменений.</span>
+          </div>
+          <div style="flex: 1 1 100%;">
+            <span class="sv" style="font-size: 18px; font-family: var(--mono); text-transform: uppercase; opacity: 0.8;">Delivery Excellence</span>
+            <span class="sl">Сохранение высокого темпа поставки фич при переходе продукта от MVP к сложной высоконагруженной системе.</span>
+          </div>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tg">Product Delivery</span><span class="tg">Масштабирование</span><span class="tg">Финтех</span>
+      </div>
+    </div>
+
+    <!-- 4 · EARLIER -->
+    <div class="card c-cream" id="c4" data-i="3">
+      <span class="cn" style="color:#1a1a1a">04/07</span>
+      <div class="lbl">Ранний опыт</div>
+      <div class="e-list">
+        <div class="e-row">
+          <div class="e-hd">
+            <span class="ey">2019–2020</span>
+            <span class="er">International PM</span>
+            <span class="ec">Axmit OÜ</span>
+          </div>
+          <div class="ed">Поставка 3 международных сервисов (США, Франция, Эстония).</div>
+        </div>
+        <div class="e-row">
+          <div class="e-hd">
+            <span class="ey">2018–2019</span>
+            <span class="er">Ad Optimizer</span>
+            <span class="ec">Adsterra</span>
+          </div>
+          <div class="ed">Оптимизация рекламных кампаний, работа с ClickHouse и NoSQL для анализа трафика.</div>
+        </div>
+        <div class="e-row">
+          <div class="e-hd">
+            <span class="ey">2016–2017</span>
+            <span class="er">Affiliate Manager</span>
+            <span class="ec">Big Deal Agency</span>
+          </div>
+          <div class="ed">CPA-кампании, арбитраж трафика и техническая настройка пикселей/постбэков.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 · COMPETENCIES -->
+    <div class="card c-slate" id="c5" data-i="4">
+      <span class="cn">05/07</span>
+      <div class="lbl">Компетенции</div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px">
+        <h2 class="serif-h">Сильные<br><em>стороны</em></h2>
+        <div class="comp-grid">
+          <div class="comp-item">
+            <div class="comp-name">Impact Engineering</div>
+            <div class="comp-desc">Внедрение ИИ-решений, напрямую влияющих на выручку и KPI бизнеса.</div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-name">AI & Agent Architecture</div>
+            <div class="comp-desc">Проектирование автономных мультиагентных систем и LLM-пайплайнов.</div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-name">Product Delivery & Scaling</div>
+            <div class="comp-desc">Масштабирование MVP до систем с миллиардными оборотами. Адаптация процессов под рост команды.</div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-name">Data-Driven Strategy</div>
+            <div class="comp-desc">Аналитика и дашборды чтобы понять что происходит с бизнесом и сформировать продуктовый вектор.</div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-name">System Optimization</div>
+            <div class="comp-desc">Переход с монолита на микросервисы (Redis, RabbitMQ, шардирование).</div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-name">Technical Leadership</div>
+            <div class="comp-desc">Связка бизнес-целей с технической реализацией: Backend, Frontend, QA, DevOps.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 · STACK -->
+    <div class="card c-cream" id="c6" data-i="5">
+      <span class="cn" style="color:#1a1a1a">06/07</span>
+      <div class="lbl">Стек · Tools & Technologies</div>
+      <div class="st-body">
+        <div class="st-sec">AI / ML</div>
+        <div class="st-wrap">
+          <span class="si b">Python</span><span class="si b">LLM Frameworks</span>
+          <span class="si b">Agentic Workflows</span><span class="si">PyTorch</span>
+          <span class="si">YOLO</span><span class="si">Computer Vision</span>
+        </div>
+        <div class="st-sec">Backend / Infra</div>
+        <div class="st-wrap">
+          <span class="si">PostgreSQL</span><span class="si">SQL Replicas</span>
+          <span class="si">Redis</span><span class="si">RabbitMQ</span>
+          <span class="si">NoSQL</span><span class="si">REST APIs</span>
+          <span class="si">Microservices</span><span class="si">Docker</span>
+          <span class="si">CI/CD</span>
+        </div>
+        <div class="st-sec">Mobile / Frontend</div>
+        <div class="st-wrap">
+          <span class="si b">Next.js</span><span class="si b">React Native</span>
+        </div>
+        <div class="st-sec">Product / Analytics</div>
+        <div class="st-wrap">
+          <span class="si b">Agile / Scrum / Kanban</span>
+          <span class="si">Jira / Confluence</span>
+          <span class="si">BPMN</span><span class="si">UML</span>
+          <span class="si">MiniApps (TG/VK)</span>
+        </div>
+        <p style="font-size: 10px; opacity: 0.3; margin-top: 20px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.05em;">Если нужной технологии нет в списке — быстро освою под проект.</p>
+      </div>
+    </div>
+
+    <!-- 7 · CONTACT -->
+    <div class="card c-dark" id="c7" data-i="6">
+      <span class="cn">07/07</span>
+      <div class="lbl" style="margin-bottom:16px">Давайте работать вместе</div>
+      <h2 class="ct-hl">Готов к<br><em>новому</em><br>вызову</h2>
+      <div class="ct-links">
+        <a class="ct-a prim" href="https://t.me/MentalProtector" target="_blank">↗ Telegram</a>
+        <a class="ct-a" href="https://www.linkedin.com/in/matvei-borisov-a0a4a5123/" target="_blank">LinkedIn</a>
+      </div>
+      <p class="ct-note">Senior / Lead · PM · AI Architect · Product Analyst</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="bento-overlay" id="bento">
+  <div class="bento-bg"></div>
+  <div class="bento-inner">
+    <div class="bento-grid">
+      <!-- Row 1: Интро, Сейчас, Опыт -->
+      <div class="bc bc-hero" data-target="0" onclick="closeBento(0)">
+        <div class="bc-label">01 · Интро</div>
+        <div class="bc-title">Матвей<br><em>Борисов</em></div>
+        <div class="bc-body">Senior PM · AI Architect.</div>
+        <div class="bc-tags">
+          <span class="bc-tag">Senior</span><span class="bc-tag">Lead</span>
+        </div>
+      </div>
+      <div class="bc bc-now" data-target="1" onclick="closeBento(1)">
+        <div class="bc-label">02 · Сейчас</div>
+        <div class="bc-title">Cofounder &<br><em>AI Lead</em></div>
+        <div class="bc-body">ИИ-агенты и IT-консалтинг.</div>
+      </div>
+      <div class="bc bc-earlier" data-target="3" onclick="closeBento(3)">
+        <div class="bc-label">04 · Ранний опыт · 2016–2020</div>
+        <div class="bc-body" style="line-height:1.4">
+          <div>PM @ Axmit</div>
+          <div>Ad Optimizer @ Adsterra</div>
+        </div>
+      </div>
+      <!-- Row 2: Qugo -->
+      <div class="bc bc-qugo" data-target="2" onclick="closeBento(2)">
+        <div class="bc-label">03 · Qugo Fintech · 2020–2024</div>
+        <div class="bc-title">PM /<br><em>Delivery Excellence</em></div>
+        <div class="bc-body">Развитие процессов при росте команды x5 и реструктуризациях.</div>
+      </div>
+      <!-- Row 3: Skills, Stack -->
+      <div class="bc bc-comp" data-target="4" onclick="closeBento(4)">
+        <div class="bc-label">05 · Скиллы</div>
+        <div class="bc-title">Сильные стороны</div>
+        <div class="bc-comp-list">
+          <div class="bc-comp-row">Impact Engineering</div>
+          <div class="bc-comp-row">AI & Agents</div>
+          <div class="bc-comp-row">Scaling</div>
+        </div>
+      </div>
+      <div class="bc bc-stack" data-target="5" onclick="closeBento(5)">
+        <div class="bc-label">06 · Стек</div>
+        <!-- Desktop: Full Grid -->
+        <div class="bc-chips-grid">
+          <div style="width: 100%;">
+            <div style="font-size: 8px; text-transform: uppercase; opacity: 0.3; margin-bottom: 6px;">AI & Data</div>
+            <span class="bc-chip b">Python</span><span class="bc-chip">LLM</span><span class="bc-chip">PyTorch</span>
+          </div>
+          <div style="width: 100%;">
+            <div style="font-size: 8px; text-transform: uppercase; opacity: 0.3; margin-bottom: 6px;">Infrastructure</div>
+            <span class="bc-chip b">Next.js</span><span class="bc-chip">Docker</span><span class="bc-chip">RabbitMQ</span>
+          </div>
+          <div style="width: 100%;">
+            <div style="font-size: 8px; text-transform: uppercase; opacity: 0.3; margin-bottom: 4px;">Management</div>
+            <span class="bc-chip b">Agile / Scrum</span><span class="bc-chip">Kanban</span>
+          </div>
+        </div>
+        <!-- Mobile: Compact Cloud -->
+        <div class="bc-chips-compact">
+          <span class="bc-chip b">Python</span><span class="bc-chip b">Next.js</span>
+          <span class="bc-chip b">Agile</span><span class="bc-chip">Docker</span>
+          <span class="bc-chip">LLM</span><span class="bc-chip">SQL</span>
+        </div>
+        <div style="font-size: 9px; opacity: 0.3; margin-top: auto; padding-top: 8px; border-top: 1px solid rgba(0,0,0,0.05);">освою всё что нужно</div>
+      </div>
+      <!-- Row 4: Contact -->
+      <div class="bc bc-contact" data-target="6" onclick="closeBento(6)">
+        <div class="bc-contact-inner">
+          <div class="bc-title">Готов к новому вызову</div>
+          <div class="bc-clinks">
+            <a class="bc-cl p" href="https://t.me/MentalProtector" target="_blank" onclick="event.stopPropagation()">↗ Telegram</a>
+            <a class="bc-cl" href="https://www.linkedin.com/in/matvei-borisov-a0a4a5123/" target="_blank" onclick="event.stopPropagation()">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const track = document.getElementById('track');
+const cards = Array.from(document.querySelectorAll('.card'));
+const dotsEl = document.getElementById('dots');
+const viewport = document.getElementById('viewport');
+const bar = document.getElementById('bar');
+const bento = document.getElementById('bento');
+const bentoItems = Array.from(document.querySelectorAll('.bc'));
+let cur = 0;
+let bentoOpen = false;
+
+/* ── NAV (Magnifier) ── */
+const navLabels = ["Интро", "Сейчас", "Qugo", "Опыт", "Скиллы", "Стек", "Связь"];
+
+const bentoBtn = document.createElement('button');
+bentoBtn.className = 'bento-dot';
+bentoBtn.id = 'bento-open';
+bentoBtn.innerHTML = `
+  <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="1" y="1" width="6" height="6" rx="1.5" fill="currentColor"/>
+    <rect x="9" y="1" width="6" height="6" rx="1.5" fill="currentColor"/>
+    <rect x="1" y="9" width="6" height="6" rx="1.5" fill="currentColor"/>
+    <rect x="9" y="9" width="6" height="6" rx="1.5" fill="currentColor"/>
+  </svg>
+`;
+dotsEl.appendChild(bentoBtn);
+
+cards.forEach((card, i) => {
+  const d = document.createElement('button');
+  d.className = 'dot' + (i===0?' on':'');
+  d.innerHTML = navLabels[i] || (i+1);
+  d.addEventListener('click', () => goTo(i));
+  dotsEl.appendChild(d);
+
+  card.addEventListener('click', () => {
+    if (i !== cur) goTo(i);
+  });
+});
+
+function goTo(i, instant = false) {
+  const targetIdx = Math.max(0, Math.min(i, cards.length - 1));
+  const card = cards[targetIdx];
+  if (!card) return;
+
+  const targetScrollLeft = card.offsetLeft - (track.offsetWidth - card.offsetWidth) / 2;
+  
+  if (instant) {
+    track.scrollLeft = targetScrollLeft;
+    if (targetIdx !== cur) setActive(targetIdx);
+    return;
+  }
+
+  const startScrollLeft = track.scrollLeft;
+  const distance = targetScrollLeft - startScrollLeft;
+  const duration = 1200; 
+  let startTime = null;
+
+  function animation(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    track.scrollLeft = startScrollLeft + distance * ease;
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    }
+  }
+
+  requestAnimationFrame(animation);
+  if (targetIdx !== cur) setActive(targetIdx);
+}
+
+function setActive(i) {
+  if (i === cur && cards[i].classList.contains('active')) return;
+  cur = i;
+  const allDots = dotsEl.querySelectorAll('.dot');
+  allDots.forEach((d,j) => d.classList.toggle('on', j===i));
+  const activeDot = allDots[i];
+  if (activeDot && window.innerWidth < 600) {
+    dotsEl.scrollTo({ left: activeDot.offsetLeft - dotsEl.offsetWidth/2 + activeDot.offsetWidth/2, behavior: 'smooth' });
+  }
+  cards.forEach((c,j) => {
+    c.classList.toggle('active', j === i);
+  });
+}
+
+track.addEventListener('scroll', () => {
+  const centerX = track.scrollLeft + track.offsetWidth / 2;
+  let closestIndex = 0;
+  let minDistance = Infinity;
+
+  cards.forEach((card, i) => {
+    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+    const distance = Math.abs(centerX - cardCenter);
+    if (distance < minDistance) {
+      minDistance = distance;
+      closestIndex = i;
+    }
+  });
+
+  if (closestIndex !== cur) {
+    setActive(closestIndex);
+  }
+}, { passive: true });
+
+document.addEventListener('keydown', e => {
+  if (bentoOpen) { if (e.key==='Escape') closeBento(cur); return; }
+  if (e.key==='ArrowRight'||e.key==='ArrowDown') goTo(cur+1);
+  if (e.key==='ArrowLeft' ||e.key==='ArrowUp')   goTo(cur-1);
+});
+
+window.addEventListener('resize', () => goTo(cur, true));
+
+let wheelLocked = false;
+track.addEventListener('wheel', e => {
+  if (bentoOpen || window.innerWidth < 1024) return;
+  e.preventDefault();
+  if (wheelLocked) return;
+  const delta = e.deltaY || e.deltaX;
+  if (Math.abs(delta) < 20) return;
+  wheelLocked = true;
+  goTo(cur + (delta > 0 ? 1 : -1));
+  setTimeout(() => { wheelLocked = false; }, 1000);
+}, { passive: false });
+
+function openBento() {
+  if (bentoOpen) return;
+  bentoOpen = true;
+  const activeCard = cards[cur];
+  const src = activeCard.getBoundingClientRect();
+  const targetCell = bentoItems.find(b => parseInt(b.dataset.target) === cur);
+  
+  bento.style.display = 'flex';
+  
+  requestAnimationFrame(() => {
+    bento.classList.add('open');
+    viewport.style.opacity = '0';
+    bar.style.opacity = '0';
+    dotsEl.style.opacity = '0';
+    
+    if (targetCell) {
+      targetCell.classList.add('animating');
+      const dest = targetCell.getBoundingClientRect();
+      const scaleX = src.width / dest.width;
+      const scaleY = src.height / dest.height;
+      const tx2 = src.left + src.width/2 - (dest.left + dest.width/2);
+      const ty2 = src.top + src.height/2 - (dest.top + dest.height/2);
+      
+      targetCell.style.transition = 'none';
+      targetCell.style.transform = `translate(${tx2}px,${ty2}px) scale(${scaleX},${scaleY})`;
+      targetCell.style.zIndex = '10';
+      
+      bentoItems.forEach((b) => {
+        if (b === targetCell) return;
+        b.style.transition = 'none';
+        b.style.opacity = '0';
+        b.style.transform = 'scale(.92) translateY(20px)';
+      });
+      
+      requestAnimationFrame(() => {
+        targetCell.style.transition = ''; 
+        targetCell.style.transform = '';
+        targetCell.style.zIndex = '';
+        bentoItems.forEach((b, idx) => {
+          if (b === targetCell) return;
+          const delay = (idx * 0.03).toFixed(2);
+          b.style.transition = `opacity .35s ease ${delay}s, transform .4s cubic-bezier(0.32, 0.72, 0, 1) ${delay}s`;
+          b.style.opacity = '';
+          b.style.transform = '';
+        });
+        setTimeout(() => targetCell.classList.remove('animating'), 450);
+      });
+    }
+  });
+}
+
+function closeBento(targetIdx) {
+  if (!bentoOpen) return;
+  const targetCard = cards[targetIdx !== undefined ? targetIdx : cur];
+  const targetCell = bentoItems.find(b => parseInt(b.dataset.target) === (targetIdx !== undefined ? targetIdx : cur));
+  const destCard = targetCard.getBoundingClientRect();
+  
+  if (targetCell) {
+    targetCell.classList.add('animating');
+    const src2 = targetCell.getBoundingClientRect();
+    const scaleX = destCard.width / src2.width;
+    const scaleY = destCard.height / src2.height;
+    const tx3 = destCard.left + destCard.width/2 - (src2.left + src2.width/2);
+    const ty3 = destCard.top + destCard.height/2 - (src2.top + src2.height/2);
+    
+    bentoItems.forEach((b) => {
+      if (b === targetCell) return;
+      b.style.transition = 'opacity .25s ease, transform .3s ease';
+      b.style.opacity = '0';
+      b.style.transform = 'scale(.9) translateY(-10px)';
+    });
+    
+    targetCell.style.transition = `transform .42s cubic-bezier(0.32, 0.72, 0, 1), border-radius .38s ease`;
+    targetCell.style.transform = `translate(${tx3}px,${ty3}px) scale(${scaleX},${scaleY})`;
+    targetCell.style.zIndex = '10';
+  }
+  
+  setTimeout(() => {
+    bentoOpen = false;
+    bento.classList.remove('open');
+    bento.style.display = 'none';
+    
+    bentoItems.forEach(b => {
+      b.style.transition = '';
+      b.style.transform = '';
+      b.style.opacity = '';
+      b.style.zIndex = '';
+      b.classList.remove('animating');
+    });
+    
+    viewport.style.opacity = '1';
+    bar.style.opacity = '1';
+    dotsEl.style.opacity = '1';
+    
+    if (targetIdx !== undefined) {
+      goTo(targetIdx, true);
+    }
+  }, 450);
+}
+
+document.getElementById('bento-open').addEventListener('click', openBento);
+setActive(0);
+</script>
+</body>
+</html>

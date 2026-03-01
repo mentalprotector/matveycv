@@ -1,0 +1,11 @@
+services:
+  cv-refactor:
+    build: .
+    container_name: cv-refactor
+    networks:
+      - web_proxy
+    restart: always
+
+networks:
+  web_proxy:
+    external: true

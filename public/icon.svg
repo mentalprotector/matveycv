@@ -1,0 +1,19 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @media (prefers-color-scheme: light) {
+      .background { fill: #131311; }
+      .foreground { fill: #f0ede8; }
+    }
+    @media (prefers-color-scheme: dark) {
+      .background { fill: #f4f1eb; }
+      .foreground { fill: #1a1a1a; }
+    }
+    .text { 
+      font-family: sans-serif; 
+      font-weight: 800; 
+      font-size: 100px;
+    }
+  </style>
+  <rect class="background" width="180" height="180" rx="44" />
+  <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" class="foreground text">CV</text>
+</svg>
