@@ -2,7 +2,7 @@ export const CV_DATA = {
   profile: {
     name: "Матвей",
     surname: "Борисов",
-    roles: ["Senior PM", "AI Architect", "Продуктовый аналитик"],
+    roles: ["Senior PM", "AI Engineer", "Продуктовый аналитик"],
     status: "Открыт для предложений · Senior/Lead",
     quote: "Impact Engineering: проектирование ИИ-решений и автоматизации, напрямую влияющих на прибыль.",
     links: [
@@ -17,9 +17,10 @@ export const CV_DATA = {
       period: "2025 — н.в.",
       role: "Cofounder & AI Automation Lead",
       desc: "Проектирование автономных ИИ-агентов для CRM и контента. IT-консалтинг и запуск MVP для сторонних заказчиков.",
-      tags: ["ИИ-оркестрация", "Python", "LLM", "Consulting"],
+      tags: ["ИИ-оркестрация", "Python", "LLM"],
       theme: "c-cream",
-      navLabel: "Сейчас"
+      navLabel: "Сейчас",
+      bentoDesc: "ИИ-агенты, IT-консалтинг и запуск MVP."
     },
     {
       id: "qugo",
@@ -33,7 +34,9 @@ export const CV_DATA = {
       ],
       tags: ["Product Delivery", "Масштабирование", "Финтех"],
       theme: "c-green",
-      navLabel: "Qugo"
+      navLabel: "Qugo",
+      bentoTitle: "PM / <em>Delivery Excellence</em>",
+      bentoDesc: "Развитие процессов в условиях быстрого роста и реструктуризаций. Обеспечение высокого темпа поставки фич."
     },
     {
       id: "earlier",
@@ -86,15 +89,15 @@ export const CV_DATA = {
     categories: [
       {
         name: "AI & Data",
-        tools: ["Python", "LLM Frameworks", "Agentic Workflows", "PyTorch", "PostgreSQL", "Redis"]
+        tools: ["Python", "LLM", "Agentic Workflows", "PyTorch", "PostgreSQL", "Redis"]
       },
       {
-        name: "Web & Infra",
+        name: "Infrastructure",
         tools: ["Next.js", "React Native", "Docker", "CI/CD", "Microservices", "RabbitMQ"]
       },
       {
-        name: "Product / Analytics",
-        tools: ["Agile / Scrum / Kanban", "Jira / Confluence", "BPMN", "UML", "MiniApps", "Product Analytics"]
+        name: "Management",
+        tools: ["Agile / Scrum", "Kanban", "Jira / Confluence", "BPMN / UML", "MiniApps", "Product Analytics"]
       }
     ]
   }
