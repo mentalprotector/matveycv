@@ -314,7 +314,7 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); font-family:
 @media (min-width: 1024px) {
   .bento-inner {
     height: 100vh;
-    padding: 20px;
+    padding: 24px;
     justify-content: center;
     overflow: hidden;
   }

@@ -1,40 +1,112 @@
+import { CV_DATA } from './data.js';
+import * as Components from './components.js';
+
+// DOM Elements
 const track = document.getElementById('track');
-const cards = Array.from(document.querySelectorAll('.card'));
 const dotsEl = document.getElementById('dots');
 const viewport = document.getElementById('viewport');
 const bar = document.getElementById('bar');
 const bento = document.getElementById('bento');
-const bentoItems = Array.from(document.querySelectorAll('.bc'));
+const bentoGrid = bento.querySelector('.bento-grid');
+
+let cards = [];
+let bentoItems = [];
 let cur = 0;
 let bentoOpen = false;
+let wheelLocked = false;
 
-/* ── NAV (Magnifier) ── */
-const navLabels = ["Интро", "Сейчас", "Qugo", "Опыт", "Скиллы", "Стек", "Связь"];
+// Initialization
+function init() {
+  renderAll();
+  setupNavigation();
+  setupObserver();
+  setupEventListeners();
+  setActive(0);
+}
 
-const bentoBtn = document.createElement('button');
-bentoBtn.className = 'bento-dot';
-bentoBtn.id = 'bento-open';
-bentoBtn.innerHTML = `
-  <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="1" y="1" width="6" height="6" rx="1.5" fill="currentColor"/>
-    <rect x="9" y="1" width="6" height="6" rx="1.5" fill="currentColor"/>
-    <rect x="1" y="9" width="6" height="6" rx="1.5" fill="currentColor"/>
-    <rect x="9" y="9" width="6" height="6" rx="1.5" fill="currentColor"/>
-  </svg>
-`;
-dotsEl.appendChild(bentoBtn);
+function renderAll() {
+  // 1. Render Cards
+  track.innerHTML = `
+    ${Components.renderHero()}
+    ${Components.renderExperience()}
+    ${Components.renderCompetencies()}
+    ${Components.renderStack()}
+    ${Components.renderContact()}
+  `;
+  cards = Array.from(document.querySelectorAll('.card'));
 
-cards.forEach((card, i) => {
-  const d = document.createElement('button');
-  d.className = 'dot' + (i===0?' on':'');
-  d.innerHTML = navLabels[i] || (i+1);
-  d.addEventListener('click', () => goTo(i));
-  dotsEl.appendChild(d);
+  // 2. Render Bento
+  bentoGrid.innerHTML = Components.renderBento();
+  bentoItems = Array.from(document.querySelectorAll('.bc'));
+}
 
-  card.addEventListener('click', () => {
-    if (i !== cur) goTo(i);
+function setupNavigation() {
+  const navLabels = ["Интро", "Сейчас", "Qugo", "Опыт", "Скиллы", "Стек", "Связь"];
+  
+  // Bento Dot
+  const bentoBtn = document.createElement('button');
+  bentoBtn.className = 'bento-dot';
+  bentoBtn.id = 'bento-open';
+  bentoBtn.innerHTML = `
+    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="1" y="1" width="6" height="6" rx="1.5" fill="currentColor"/>
+      <rect x="9" y="1" width="6" height="6" rx="1.5" fill="currentColor"/>
+      <rect x="1" y="9" width="6" height="6" rx="1.5" fill="currentColor"/>
+      <rect x="9" y="9" width="6" height="6" rx="1.5" fill="currentColor"/>
+    </svg>
+  `;
+  bentoBtn.addEventListener('click', openBento);
+  dotsEl.appendChild(bentoBtn);
+
+  // Nav Dots
+  cards.forEach((card, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' on' : '');
+    d.innerHTML = navLabels[i] || (i + 1);
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+
+    card.addEventListener('click', () => {
+      if (i !== cur) goTo(i);
+    });
   });
-});
+}
+
+function setupObserver() {
+  const options = {
+    root: track,
+    threshold: 0.6,
+    rootMargin: '0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const index = parseInt(entry.target.dataset.i);
+        if (index !== cur) setActive(index);
+      }
+    });
+  }, options);
+
+  cards.forEach(card => observer.observe(card));
+}
+
+function setActive(i) {
+  cur = i;
+  const allDots = dotsEl.querySelectorAll('.dot');
+  allDots.forEach((d, j) => d.classList.toggle('on', j === i));
+  
+  // Mobile nav scroll sync
+  const activeDot = allDots[i];
+  if (activeDot && window.innerWidth < 600) {
+    dotsEl.scrollTo({ 
+      left: activeDot.offsetLeft - dotsEl.offsetWidth / 2 + activeDot.offsetWidth / 2, 
+      behavior: 'smooth' 
+    });
+  }
+
+  cards.forEach((c, j) => c.classList.toggle('active', j === i));
+}
 
 function goTo(i, instant = false) {
   const targetIdx = Math.max(0, Math.min(i, cards.length - 1));
@@ -45,7 +117,7 @@ function goTo(i, instant = false) {
   
   if (instant) {
     track.scrollLeft = targetScrollLeft;
-    if (targetIdx !== cur) setActive(targetIdx);
+    setActive(targetIdx);
     return;
   }
 
@@ -54,73 +126,17 @@ function goTo(i, instant = false) {
   const duration = 1200; 
   let startTime = null;
 
-  function animation(currentTime) {
+  function step(currentTime) {
     if (startTime === null) startTime = currentTime;
     const timeElapsed = currentTime - startTime;
     const progress = Math.min(timeElapsed / duration, 1);
     const ease = 1 - Math.pow(1 - progress, 3);
     track.scrollLeft = startScrollLeft + distance * ease;
-    if (timeElapsed < duration) {
-      requestAnimationFrame(animation);
-    }
+    if (timeElapsed < duration) requestAnimationFrame(step);
   }
 
-  requestAnimationFrame(animation);
-  if (targetIdx !== cur) setActive(targetIdx);
+  requestAnimationFrame(step);
 }
-
-function setActive(i) {
-  if (i === cur && cards[i].classList.contains('active')) return;
-  cur = i;
-  const allDots = dotsEl.querySelectorAll('.dot');
-  allDots.forEach((d,j) => d.classList.toggle('on', j===i));
-  const activeDot = allDots[i];
-  if (activeDot && window.innerWidth < 600) {
-    dotsEl.scrollTo({ left: activeDot.offsetLeft - dotsEl.offsetWidth/2 + activeDot.offsetWidth/2, behavior: 'smooth' });
-  }
-  cards.forEach((c,j) => {
-    c.classList.toggle('active', j === i);
-  });
-}
-
-track.addEventListener('scroll', () => {
-  const centerX = track.scrollLeft + track.offsetWidth / 2;
-  let closestIndex = 0;
-  let minDistance = Infinity;
-
-  cards.forEach((card, i) => {
-    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-    const distance = Math.abs(centerX - cardCenter);
-    if (distance < minDistance) {
-      minDistance = distance;
-      closestIndex = i;
-    }
-  });
-
-  if (closestIndex !== cur) {
-    setActive(closestIndex);
-  }
-}, { passive: true });
-
-document.addEventListener('keydown', e => {
-  if (bentoOpen) { if (e.key==='Escape') closeBento(cur); return; }
-  if (e.key==='ArrowRight'||e.key==='ArrowDown') goTo(cur+1);
-  if (e.key==='ArrowLeft' ||e.key==='ArrowUp')   goTo(cur-1);
-});
-
-window.addEventListener('resize', () => goTo(cur, true));
-
-let wheelLocked = false;
-track.addEventListener('wheel', e => {
-  if (bentoOpen || window.innerWidth < 1024) return;
-  e.preventDefault();
-  if (wheelLocked) return;
-  const delta = e.deltaY || e.deltaX;
-  if (Math.abs(delta) < 20) return;
-  wheelLocked = true;
-  goTo(cur + (delta > 0 ? 1 : -1));
-  setTimeout(() => { wheelLocked = false; }, 1000);
-}, { passive: false });
 
 function openBento() {
   if (bentoOpen) return;
@@ -216,11 +232,38 @@ function closeBento(targetIdx) {
     bar.style.opacity = '1';
     dotsEl.style.opacity = '1';
     
-    if (targetIdx !== undefined) {
-      goTo(targetIdx, true);
-    }
+    if (targetIdx !== undefined) goTo(targetIdx, true);
   }, 450);
 }
 
-document.getElementById('bento-open').addEventListener('click', openBento);
-setActive(0);
+function setupEventListeners() {
+  document.addEventListener('keydown', e => {
+    if (bentoOpen) { if (e.key === 'Escape') closeBento(cur); return; }
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(cur + 1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(cur - 1);
+  });
+
+  window.addEventListener('resize', () => goTo(cur, true));
+
+  track.addEventListener('wheel', e => {
+    if (bentoOpen || window.innerWidth < 1024) return;
+    e.preventDefault();
+    if (wheelLocked) return;
+    const delta = e.deltaY || e.deltaX;
+    if (Math.abs(delta) < 20) return;
+    wheelLocked = true;
+    goTo(cur + (delta > 0 ? 1 : -1));
+    setTimeout(() => { wheelLocked = false; }, 1000);
+  }, { passive: false });
+
+  // Bento cell clicks
+  bentoItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const target = parseInt(item.dataset.target);
+      closeBento(target);
+    });
+  });
+}
+
+// Kick off
+init();
