@@ -4,7 +4,7 @@ export const CV_DATA = {
     surname: "Борисов",
     roles: ["Senior PM", "AI Engineer", "Продуктовый аналитик"],
     status: "Открыт для предложений · Senior/Lead",
-    quote: "Impact Engineering: проектирование ИИ-решений и автоматизации, напрямую влияющих на прибыль.",
+    quote: "Проектирование ИИ-решений и автоматизации, напрямую влияющих на прибыль.",
     links: [
       { label: "Telegram", url: "https://t.me/MentalProtector" },
       { label: "LinkedIn", url: "https://www.linkedin.com/in/matvei-borisov-a0a4a5123/" }
@@ -15,7 +15,7 @@ export const CV_DATA = {
       id: "now",
       company: "Alfatapes",
       period: "2025 — н.в.",
-      role: "Cofounder & AI Automation Lead",
+      role: "Сооснователь & ИИ Оптимизатор",
       desc: "Проектирование автономных ИИ-агентов для CRM и контента. IT-консалтинг и запуск MVP для сторонних заказчиков.",
       tags: ["ИИ-оркестрация", "Python", "LLM"],
       theme: "c-cream",
@@ -26,7 +26,7 @@ export const CV_DATA = {
       id: "qugo",
       company: "Qugo",
       period: "2020 — 2024",
-      role: "Project Manager / Product Delivery",
+      role: "Проджект менеджер / Поставка продукта",
       desc: "Провёл продукт от сырого MVP до высоконагруженной системы с миллиардными оборотами. Масштабировал процессы и устранял технические затыки.",
       details: [
         { title: "Process Evolution", text: "Развитие продуктовых процессов в условиях 5-кратного роста штата и регулярных структурных изменений." },
@@ -35,7 +35,7 @@ export const CV_DATA = {
       tags: ["Product Delivery", "Масштабирование", "Финтех"],
       theme: "c-green",
       navLabel: "Qugo",
-      bentoTitle: "PM / <em>Delivery Excellence</em>",
+      bentoTitle: "ПМ / <em>Поставка продукта</em>",
       bentoDesc: "Развитие процессов в условиях быстрого роста и реструктуризаций. Обеспечение высокого темпа поставки фич."
     },
     {
@@ -47,19 +47,19 @@ export const CV_DATA = {
       items: [
         {
           period: "2019–2020",
-          role: "International PM",
+          role: "Международный ПМ",
           company: "Axmit OÜ",
           desc: "Поставка 3 международных сервисов (США, Франция, Эстония)."
         },
         {
           period: "2018–2019",
-          role: "Ad Optimizer",
+          role: "Оптимизатор рекламы",
           company: "Adsterra",
           desc: "Оптимизация рекламных кампаний, работа с ClickHouse и NoSQL для анализа трафика."
         },
         {
           period: "2016–2017",
-          role: "Affiliate Manager",
+          role: "Аффилейт менеджер",
           company: "Big Deal Agency",
           desc: "CPA-кампании, арбитраж трафика и техническая настройка пикселей/постбэков."
         }
@@ -82,7 +82,7 @@ export const CV_DATA = {
   },
   stack: {
     id: "stack",
-    title: "Стек · Tools & Technologies",
+    title: "Стек · Инструменты & Технологии",
     navLabel: "Стек",
     theme: "c-cream",
     footerNote: "Если нужной технологии нет в списке — быстро освою под проект.",
@@ -92,11 +92,11 @@ export const CV_DATA = {
         tools: ["Python", "LLM", "Agentic Workflows", "PyTorch", "PostgreSQL", "Redis"]
       },
       {
-        name: "Infrastructure",
+        name: "Инфраструктура",
         tools: ["Next.js", "React Native", "Docker", "CI/CD", "Microservices", "RabbitMQ"]
       },
       {
-        name: "Management",
+        name: "Управление",
         tools: ["Agile / Scrum", "Kanban", "Jira / Confluence", "BPMN / UML", "MiniApps", "Product Analytics"]
       }
     ]

@@ -105,7 +105,7 @@ export function renderStack() {
             ${cat.tools.map(tool => `<span class="si ${tool === 'Python' || tool === 'Next.js' || tool.includes('Agile') ? 'b' : ''}">${tool}</span>`).join('')}
           </div>
         `).join('')}
-        <p style="font-size: 10px; opacity: 0.3; margin-top: 20px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.05em;">${s.footerNote}</p>
+        <p class="st-footer">${s.footerNote}</p>
       </div>
     </div>
   `;
@@ -157,7 +157,7 @@ export function renderBento() {
       </div>
     </div>
     <div class="bc bc-qugo" data-target="2">
-      <div class="bc-label">03 · ${ex[1].company} Fintech · ${ex[1].period}</div>
+      <div class="bc-label">03 · ${ex[1].company} · ${ex[1].period}</div>
       <div class="bc-title">${ex[1].bentoTitle}</div>
       <div class="bc-body">${ex[1].bentoDesc}</div>
     </div>
@@ -170,6 +170,7 @@ export function renderBento() {
     </div>
     <div class="bc bc-stack" data-target="5">
       <div class="bc-label">06 · ${st.navLabel}</div>
+      <!-- Desktop: Full Grid -->
       <div class="bc-chips-grid">
         ${st.categories.map(cat => `
           <div style="display: flex; flex-wrap: wrap; gap: 6px; align-content: flex-start;">
@@ -183,7 +184,7 @@ export function renderBento() {
         ${st.categories[1].tools.slice(0,1).map(t => `<span class="bc-chip b">${t}</span>`).join('')}
         <span class="bc-chip">Docker</span>
       </div>
-      <div style="font-size: 10px; opacity: 0.3; margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.05);">освою всё что нужно</div>
+      <div class="bc-stack-footer">${st.footerNote}</div>
     </div>
     <div class="bc bc-contact" data-target="6">
       <div class="bc-contact-inner">
