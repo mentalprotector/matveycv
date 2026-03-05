@@ -2,7 +2,7 @@ export const CV_DATA = {
   profile: {
     name: "Матвей",
     surname: "Борисов",
-    roles: ["Senior PM", "AI Engineer", "Продуктовый аналитик"],
+    roles: ["Senior PM", "ИИ инженер", "Продуктовый Аналитик"],
     status: "Открыт для предложений · Senior/Lead",
     quote: "Проектирование ИИ-решений и автоматизации, напрямую влияющих на прибыль.",
     links: [
@@ -15,7 +15,7 @@ export const CV_DATA = {
       id: "now",
       company: "Alfatapes",
       period: "2025 — н.в.",
-      role: "Сооснователь & ИИ Оптимизатор",
+      role: "Сооснователь & Инженер",
       desc: "Проектирование автономных ИИ-агентов для CRM и контента. IT-консалтинг и запуск MVP для сторонних заказчиков.",
       tags: ["ИИ-оркестрация", "Python", "LLM"],
       theme: "c-cream",
@@ -32,7 +32,7 @@ export const CV_DATA = {
         { title: "Process Evolution", text: "Развитие продуктовых процессов в условиях 5-кратного роста штата и регулярных структурных изменений." },
         { title: "Delivery Excellence", text: "Сохранение высокого темпа поставки фич при переходе продукта от MVP к сложной высоконагруженной системе." }
       ],
-      tags: ["Product Delivery", "Масштабирование", "Финтех"],
+      tags: ["Product Delivery", "Масштабирование", "Финтех", "Agile / Scrum", "Jira / Confluence"],
       theme: "c-green",
       navLabel: "Qugo",
       bentoTitle: "ПМ / <em>Поставка продукта</em>",
