@@ -153,7 +153,7 @@ export function renderBento() {
     <div class="bc bc-earlier" data-target="3">
       <div class="bc-label">04 · Ранний опыт · ${ex[2].period}</div>
       <div class="bc-body" style="line-height:1.6">
-        ${ex[2].items.slice(0,2).map(item => `<div>${item.role} @ ${item.company.split(' ')[0]}</div>`).join('')}
+        ${ex[2].items.map(item => `<div>${item.role} @ ${item.company.split(' ')[0]}</div>`).join('')}
       </div>
     </div>
     <div class="bc bc-qugo" data-target="2">
@@ -165,7 +165,7 @@ export function renderBento() {
       <div class="bc-label">05 · ${comp.navLabel}</div>
       <div class="bc-title">${comp.title}</div>
       <div class="bc-comp-list">
-        ${comp.list.slice(0,3).map(item => `<div class="bc-comp-row">${item.name}</div>`).join('')}
+        ${comp.list.map(item => `<div class="bc-comp-row">${item.name}</div>`).join('')}
       </div>
     </div>
     <div class="bc bc-stack" data-target="5">
