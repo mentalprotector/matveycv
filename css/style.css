@@ -361,7 +361,7 @@ html, body {
   .bc-chips { gap: 8px; margin-top: 12px; }
   .bc-chip { font-size: 12px; padding: 6px 14px; }
   .bc-body { font-size: 15px; line-height: 1.5; }
-  .bc-title { margin-bottom: 12px; font-size: clamp(20px, 2.2vw, 28px); white-space: nowrap; }
+  .bc-title { margin-bottom: 12px; font-size: clamp(18px, 2vw, 26px); white-space: nowrap; }
   .bc-label { margin-bottom: 12px; }
 }
 
