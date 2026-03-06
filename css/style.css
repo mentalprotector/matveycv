@@ -32,6 +32,8 @@ html, body {
   .mobile-only { display: inherit; }
 }
 
+a, button, .dot, .bc, .bento-dot, .card { touch-action: manipulation; }
+
 /* ─── TOP BAR ─── */
 .bar {
   position: fixed; top: 0; left: 0; right: 0; 
@@ -116,7 +118,7 @@ html, body {
 .track {
   display: flex; align-items: center;
   height: 100%;
-  padding: 20px var(--pad) 80px;
+  padding: 20px var(--pad) calc(80px + env(safe-area-inset-bottom, 0));
   gap: var(--gap);
   overflow-x: scroll; overflow-y: hidden;
   scroll-snap-type: x mandatory;
@@ -402,7 +404,7 @@ html, body {
 
 @media (max-width: 600px) {
   .bento-inner { 
-    padding: 10px var(--pad) 30px; 
+    padding: 10px var(--pad) calc(30px + env(safe-area-inset-bottom, 0)); 
     justify-content: flex-start;
     height: 100%;
     overflow-y: auto;
