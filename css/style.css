@@ -350,18 +350,18 @@ html, body {
     gap: 14px;
     width: 100%;
   }
-  .bc-hero    { grid-column: 1 / span 4; grid-row: 1 / span 3; }
-  .bc-now     { grid-column: 5 / span 4; grid-row: 1 / span 3; }
-  .bc-earlier { grid-column: 9 / span 4; grid-row: 1 / span 3; }
-  .bc-qugo    { grid-column: 1 / span 12; grid-row: 4 / span 3; }
-  .bc-comp    { grid-column: 1 / span 6; grid-row: 7 / span 5; }
-  .bc-stack   { grid-column: 7 / span 6; grid-row: 7 / span 5; }
+  .bc-hero    { grid-column: 1 / span 4; grid-row: 1 / span 4; }
+  .bc-now     { grid-column: 5 / span 4; grid-row: 1 / span 4; }
+  .bc-earlier { grid-column: 9 / span 4; grid-row: 1 / span 4; }
+  .bc-qugo    { grid-column: 1 / span 12; grid-row: 5 / span 3; }
+  .bc-comp    { grid-column: 1 / span 6; grid-row: 8 / span 4; }
+  .bc-stack   { grid-column: 7 / span 6; grid-row: 8 / span 4; }
   .bc-contact { grid-column: 1 / span 12; grid-row: 12 / span 1; }
   
   .bc-chips { gap: 8px; margin-top: 12px; }
   .bc-chip { font-size: 12px; padding: 6px 14px; }
   .bc-body { font-size: 15px; line-height: 1.5; }
-  .bc-title { margin-bottom: 12px; font-size: clamp(18px, 2vw, 26px); white-space: nowrap; }
+  .bc-title { margin-bottom: 12px; font-size: clamp(16px, 1.8vw, 24px); white-space: nowrap; }
   .bc-label { margin-bottom: 12px; }
 }
 
