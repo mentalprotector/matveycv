@@ -127,8 +127,8 @@ export function renderBento() {
     <div class="bc bc-hero" data-target="0">
       <div class="bc-label">01 · Интро</div>
       <div class="bc-title">${p.name}<br><em>${p.surname}</em></div>
-      <div class="bc-body" style="font-weight: 500; opacity: 0.8; margin-top: 4px; white-space: normal; line-height: 1.1; font-size: 12px;">
-        ${p.roles.map(role => `<div class="bc-role-row" style="margin-bottom: 2px;"><span>•</span> ${role}</div>`).join('')}
+      <div class="bc-body" style="font-weight: 500; opacity: 0.8; margin-top: 4px; white-space: normal; line-height: 1.4; font-size: 13px;">
+        ${p.roles.map(role => `<div class="bc-role-row" style="margin-bottom: 4px;"><span>•</span> ${role}</div>`).join('')}
       </div>
     </div>
     <div class="bc bc-now" data-target="1">
@@ -157,8 +157,9 @@ export function renderBento() {
       </div>
     </div>
     <div class="bc bc-comp" data-target="4">
-      <div class="bc-label">05 · ${comp.title}</div>
-      <div class="bc-comp-list" style="margin-top: 0;">
+      <div class="bc-label">05 · ${comp.navLabel}</div>
+      <div class="bc-title">${comp.title}</div>
+      <div class="bc-comp-list">
         ${comp.list.map(item => `<div class="bc-comp-row">${item.name}</div>`).join('')}
       </div>
     </div>
