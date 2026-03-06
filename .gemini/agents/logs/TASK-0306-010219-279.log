@@ -1,0 +1,139 @@
+=== INPUT ===
+# SYSTEM GUARD
+# SYSTEM GUARD: CORE DIRECTIVES
+
+## 🛡️ SECURITY & INTEGRITY
+- **Credential Protection:** NEVER print, log, or commit API keys, passwords, or secrets.
+- **System Isolation:** Do not modify `.git`, `.gemini`, or system configuration files unless explicitly instructed.
+- **Surgical Changes:** Modify only what is required. Avoid unrelated refactoring.
+
+## 🧠 THOUGHT PROTOCOL (MANDATORY)
+- **Think Before Acting:** Every response MUST start with a `<thought>` block.
+- **Content:** Inside `<thought>`, analyze the request, evaluate risks, plan your steps, and perform self-criticism.
+- **Separation:** The actual action (Code, JSON, or Answer) must follow AFTER the closing `</thought>` tag.
+- **Guardrail:** Keep thoughts concise. If reasoning exceeds 4000 tokens or significantly dominates the context, summarize and truncate.
+- **Structure:**
+  ```
+  <thought>
+  [Your reasoning, strategy, and edge-case analysis here]
+  </thought>
+  [Your Actionable Output (JSON/Code/Response)]
+  ```
+
+## 📂 CONTEXT USAGE
+- **Dynamic Awareness:** Use project documentation (`ROADMAP.md`, etc.) to align with the overall project vision.
+- **Inherited Knowledge:** Leverage context from previous agents (Architects, Planners) to maintain technical continuity.
+- **File Stewardship:** Read only the files necessary for the task to conserve context tokens.
+
+## 📢 COMMUNICATION
+- **Conciseness:** Provide high-signal, professional technical output.
+- **JSON Protocol:** If your role requires JSON results, ensure the output is a single, valid JSON block.
+
+# ROLE IDENTITY
+# Role: Router Agent (Elite Dispatcher)
+
+**Objective:** Analyze user requests and architect a surgical execution pipeline.
+
+## 🧠 Core Logic
+
+Analyze the request and build a pipeline based on the **[PIPELINE TEMPLATES]**.
+
+### 🛠️ PIPELINE TEMPLATE: nexus_elite_dev (THE GOLD STANDARD)
+For any complex technical feature, refactoring, or project upgrade, YOU MUST use this 4-stage elite loop:
+
+1.  **Stage: blueprint** (Role: `architect`) -> Create technical blueprint.md (MANDATORY HITL GATE).
+2.  **Stage: planning** (Role: `planner`, depends_on: blueprint) -> Break blueprint into atomic tasks.
+3.  **Stage: implementation** (Role: `coder`, depends_on: planning) -> Execute tasks surgically with validation.
+4.  **Stage: review** (Role: `reviewer`, depends_on: implementation) -> Final review against blueprint (FINAL GATE).
+
+### 🔴 Complex Features / Epics
+If a request involves changing more than 1 file or implementing new logic, ALWAYS use the `nexus_elite_dev` template.
+
+**CRITICAL RULE:** Do NOT create `coder` or `reviewer` tasks in the initial router response. Assign an `architect` to the first stage. The `planner` in the subsequent stage will be responsible for spawning real coding tasks after the blueprint is approved.
+
+## ⛓️ Pipeline Dependency Rules (MANDATORY)
+*   Each stage inherits the `summary` artifact from its ancestors (Blueprint -> Planning -> Implementation).
+*   **Gate Protocol:** Respect `gate: manual_approve`. Stop the pipeline and wait for user signal at Blueprint and Review stages.
+
+## 📢 Output Format (JSON Only)
+
+[SAVE_TO_FILE: .gemini/agents/tasks/{CURRENT_TASK_ID}.result.json]
+```json
+{
+  "summary": "Activating the Nexus Elite Dev Loop for surgical implementation.",
+  "pipeline": {
+    "name": "Elite Implementation",
+    "template_id": "nexus_elite_dev",
+    "stages": [
+      {
+        "name": "blueprint",
+        "tasks": [ { "role": "architect", "instruction": "Analyze and create blueprint for ..." } ]
+      },
+      {
+        "name": "planning",
+        "depends_on": "blueprint",
+        "tasks": [ { "role": "planner", "instruction": "Decompose approved blueprint into tasks." } ]
+      }
+    ]
+  }
+}
+```
+
+Activate skill deep-thinker.
+
+# PROJECT CONTEXT
+
+--- PROJECT DOC: GEMINI.md ---
+# 🌐 MATVEY CV PROTECTION PROTOCOL - V1.1
+
+## 🚀 Mission
+Matvey's personal CV/Resume. Professional, clean, zero-bug policy. Optimized for viewport-fit mobile experience.
+
+## 🏗 Architecture
+- **Data-Driven:** All content lives in `js/data.js`.
+- **Componentized:** HTML fragments are generated in `js/components.js`.
+- **Logic:** Navigation and observers are in `js/script.js`.
+- **Cache Busting:** Always update version `?v=X.X` in `index.html` script imports after changes.
+
+## ⚠️ CRITICAL RULES
+1.  **Bento Viewport Lock:** On mobile, the bento grid MUST fit within `85vh` to prevent internal scrolling. Use `mobile-only` class to hide non-essential items if height grows.
+2.  **No Strings Transformation:** Do NOT use `.split(' ')[0]` or `.toUpperCase()` on company names or roles unless explicitly requested. Data in `data.js` is the source of truth.
+3.  **CSS Integrity:** Use Vanilla CSS in `css/style.css`. Avoid inline styles unless they are dynamic.
+4.  **Syntax Safety:** Replace entire functions in `js/components.js` to ensure block-level integrity.
+
+## 🛠 Deployment (DEV)
+- **Local Dev:** Edit files directly.
+- **Docker:** `docker compose up -d --build` (Note: ensure docker is in PATH).
+- **Hard Refresh:** Always test with `Ctrl + F5` to bypass JS module caching.
+
+## 🧭 Session Status
+- [x] Mode: Stabilization (DONE)
+- [x] Bento Grid: Optimized for mobile (DONE)
+- [x] Content: Russian translations & role sync (DONE)
+- [x] Documentation: GEMINI.md updated (DONE)
+
+
+
+# TASK INSTRUCTION
+Analyze and decompose user request REQ-0306-010219-606: Fix bento grid mobile overflow and clean up chip styles in stack card
+
+
+Execute the task and provide result.json if required by your role. Use 'python scripts/agent_orchestrator.py complete TASK-0306-010219-279' when done.
+
+=== OUTPUT STREAM ===
+{"type":"init","timestamp":"2026-03-06T01:04:34.399Z","session_id":"f89ff84e-366c-4d89-b05c-65099faaaa14","model":"gemini-3-flash-preview"}
+{"type":"message","timestamp":"2026-03-06T01:04:34.402Z","role":"user","content":"# SYSTEM GUARD\n# SYSTEM GUARD: CORE DIRECTIVES\n\n## 🛡️ SECURITY & INTEGRITY\n- **Credential Protection:** NEVER print, log, or commit API keys, passwords, or secrets.\n- **System Isolation:** Do not modify `.git`, `.gemini`, or system configuration files unless explicitly instructed.\n- **Surgical Changes:** Modify only what is required. Avoid unrelated refactoring.\n\n## 🧠 THOUGHT PROTOCOL (MANDATORY)\n- **Think Before Acting:** Every response MUST start with a `<thought>` block.\n- **Content:** Inside `<thought>`, analyze the request, evaluate risks, plan your steps, and perform self-criticism.\n- **Separation:** The actual action (Code, JSON, or Answer) must follow AFTER the closing `</thought>` tag.\n- **Guardrail:** Keep thoughts concise. If reasoning exceeds 4000 tokens or significantly dominates the context, summarize and truncate.\n- **Structure:**\n  ```\n  <thought>\n  [Your reasoning, strategy, and edge-case analysis here]\n  </thought>\n  [Your Actionable Output (JSON/Code/Response)]\n  ```\n\n## 📂 CONTEXT USAGE\n- **Dynamic Awareness:** Use project documentation (`ROADMAP.md`, etc.) to align with the overall project vision.\n- **Inherited Knowledge:** Leverage context from previous agents (Architects, Planners) to maintain technical continuity.\n- **File Stewardship:** Read only the files necessary for the task to conserve context tokens.\n\n## 📢 COMMUNICATION\n- **Conciseness:** Provide high-signal, professional technical output.\n- **JSON Protocol:** If your role requires JSON results, ensure the output is a single, valid JSON block.\n\n# ROLE IDENTITY\n# Role: Router Agent (Elite Dispatcher)\n\n**Objective:** Analyze user requests and architect a surgical execution pipeline.\n\n## 🧠 Core Logic\n\nAnalyze the request and build a pipeline based on the **[PIPELINE TEMPLATES]**.\n\n### 🛠️ PIPELINE TEMPLATE: nexus_elite_dev (THE GOLD STANDARD)\nFor any complex technical feature, refactoring, or project upgrade, YOU MUST use this 4-stage elite loop:\n\n1.  **Stage: blueprint** (Role: `architect`) -> Create technical blueprint.md (MANDATORY HITL GATE).\n2.  **Stage: planning** (Role: `planner`, depends_on: blueprint) -> Break blueprint into atomic tasks.\n3.  **Stage: implementation** (Role: `coder`, depends_on: planning) -> Execute tasks surgically with validation.\n4.  **Stage: review** (Role: `reviewer`, depends_on: implementation) -> Final review against blueprint (FINAL GATE).\n\n### 🔴 Complex Features / Epics\nIf a request involves changing more than 1 file or implementing new logic, ALWAYS use the `nexus_elite_dev` template.\n\n**CRITICAL RULE:** Do NOT create `coder` or `reviewer` tasks in the initial router response. Assign an `architect` to the first stage. The `planner` in the subsequent stage will be responsible for spawning real coding tasks after the blueprint is approved.\n\n## ⛓️ Pipeline Dependency Rules (MANDATORY)\n*   Each stage inherits the `summary` artifact from its ancestors (Blueprint -> Planning -> Implementation).\n*   **Gate Protocol:** Respect `gate: manual_approve`. Stop the pipeline and wait for user signal at Blueprint and Review stages.\n\n## 📢 Output Format (JSON Only)\n\n[SAVE_TO_FILE: .gemini/agents/tasks/{CURRENT_TASK_ID}.result.json]\n```json\n{\n  \"summary\": \"Activating the Nexus Elite Dev Loop for surgical implementation.\",\n  \"pipeline\": {\n    \"name\": \"Elite Implementation\",\n    \"template_id\": \"nexus_elite_dev\",\n    \"stages\": [\n      {\n        \"name\": \"blueprint\",\n        \"tasks\": [ { \"role\": \"architect\", \"instruction\": \"Analyze and create blueprint for ...\" } ]\n      },\n      {\n        \"name\": \"planning\",\n        \"depends_on\": \"blueprint\",\n        \"tasks\": [ { \"role\": \"planner\", \"instruction\": \"Decompose approved blueprint into tasks.\" } ]\n      }\n    ]\n  }\n}\n```\n\nActivate skill deep-thinker.\n\n# PROJECT CONTEXT\n\n--- PROJECT DOC: GEMINI.md ---\n# 🌐 MATVEY CV PROTECTION PROTOCOL - V1.1\n\n## 🚀 Mission\nMatvey's personal CV/Resume. Professional, clean, zero-bug policy. Optimized for viewport-fit mobile experience.\n\n## 🏗 Architecture\n- **Data-Driven:** All content lives in `js/data.js`.\n- **Componentized:** HTML fragments are generated in `js/components.js`.\n- **Logic:** Navigation and observers are in `js/script.js`.\n- **Cache Busting:** Always update version `?v=X.X` in `index.html` script imports after changes.\n\n## ⚠️ CRITICAL RULES\n1.  **Bento Viewport Lock:** On mobile, the bento grid MUST fit within `85vh` to prevent internal scrolling. Use `mobile-only` class to hide non-essential items if height grows.\n2.  **No Strings Transformation:** Do NOT use `.split(' ')[0]` or `.toUpperCase()` on company names or roles unless explicitly requested. Data in `data.js` is the source of truth.\n3.  **CSS Integrity:** Use Vanilla CSS in `css/style.css`. Avoid inline styles unless they are dynamic.\n4.  **Syntax Safety:** Replace entire functions in `js/components.js` to ensure block-level integrity.\n\n## 🛠 Deployment (DEV)\n- **Local Dev:** Edit files directly.\n- **Docker:** `docker compose up -d --build` (Note: ensure docker is in PATH).\n- **Hard Refresh:** Always test with `Ctrl + F5` to bypass JS module caching.\n\n## 🧭 Session Status\n- [x] Mode: Stabilization (DONE)\n- [x] Bento Grid: Optimized for mobile (DONE)\n- [x] Content: Russian translations & role sync (DONE)\n- [x] Documentation: GEMINI.md updated (DONE)\n\n\n\n# TASK INSTRUCTION\nAnalyze and decompose user request REQ-0306-010219-606: Fix bento grid mobile overflow and clean up chip styles in stack card\n\n\nExecute the task and provide result.json if required by your role. Use 'python scripts/agent_orchestrator.py complete TASK-0306-010219-279' when done."}
+{"type":"message","timestamp":"2026-03-06T01:04:42.016Z","role":"assistant","content":"[SAVE_TO_FILE: .gemini/agents/tasks/TASK-0306-010219-279.result.json]\n```json\n{\n  \"summary\": \"Activating the Nexus Elite Dev Loop to address mobile bento grid","delta":true}
+{"type":"message","timestamp":"2026-03-06T01:04:42.037Z","role":"assistant","content":" overflow and refine chip styles in the stack card. This includes enforcing the 85vh viewport lock and standardizing CSS for skill chips.\",\n  \"pipeline\": {\n    \"name\": \"Bento Grid and Chip Style Fix\",\n    \"template_id\": \"nexus_elite_dev\",\n    \"stages","delta":true}
+{"type":"message","timestamp":"2026-03-06T01:04:42.203Z","role":"assistant","content":"\": [\n      {\n        \"name\": \"blueprint\",\n        \"tasks\": [\n          {\n            \"role\": \"architect\",\n            \"instruction\": \"Analyze the current implementation of the bento grid in `css/style.css` and `js/components.js`. Identify the cause of mobile","delta":true}
+{"type":"message","timestamp":"2026-03-06T01:04:42.591Z","role":"assistant","content":" overflow (violating the 85vh rule) and evaluate the 'stack' card chip styling for cleanup. Provide a `blueprint.md` with specific CSS and JS modification plans.\"\n          }\n        ]\n      },\n      {\n        \"name\": \"planning\",\n        \"depends_on\":","delta":true}
+{"type":"message","timestamp":"2026-03-06T01:04:42.711Z","role":"assistant","content":" \"blueprint\",\n        \"tasks\": [\n          {\n            \"role\": \"planner\",\n            \"instruction\": \"Decompose the approved blueprint into atomic tasks for fixing the grid overflow, implementing the `mobile-only` visibility logic if necessary, and refactoring the chip styles.\"\n          }\n        ]\n","delta":true}
+{"type":"message","timestamp":"2026-03-06T01:04:42.751Z","role":"assistant","content":"      }\n    ]\n  }\n}\n```","delta":true}
+{"type":"result","timestamp":"2026-03-06T01:04:42.773Z","status":"success","stats":{"total_tokens":4865,"input_tokens":3675,"output_tokens":336,"cached":0,"input":3675,"duration_ms":8375,"tool_calls":0}}
+
+
+=== STDERR ===
+YOLO mode is enabled. All tool calls will be automatically approved.
+Loaded cached credentials.
+YOLO mode is enabled. All tool calls will be automatically approved.
+

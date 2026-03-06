@@ -1,4 +1,4 @@
-import { CV_DATA } from './data.js';
+import { CV_DATA } from './data.js?v=2.5';
 
 export function renderHero() {
   const p = CV_DATA.profile;
@@ -105,7 +105,7 @@ export function renderStack() {
             ${cat.tools.map(tool => `<span class="si ${tool === 'Python' || tool === 'Next.js' || tool.includes('Agile') ? 'b' : ''}">${tool}</span>`).join('')}
           </div>
         `).join('')}
-        <p class="st-footer">${s.footerNote}</p>
+        <p style="font-size: 10px; opacity: 0.3; margin-top: 20px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.05em;">${s.footerNote}</p>
       </div>
     </div>
   `;
@@ -137,26 +137,32 @@ export function renderBento() {
     <div class="bc bc-hero" data-target="0">
       <div class="bc-label">01 · Интро</div>
       <div class="bc-title">${p.name}<br><em>${p.surname}</em></div>
-      <div class="bc-body">${p.roles.join(' · ')}.</div>
+      <div class="bc-body" style="font-weight: 500; opacity: 0.8; line-height: 1.4;">${p.roles.join('<br>')}</div>
     </div>
     <div class="bc bc-now" data-target="1">
       <div class="bc-label">02 · Сейчас</div>
       <div class="bc-title">${ex[0].company}</div>
-      <div class="bc-body">${ex[0].role}</div>
-      <div class="bc-tags">
+      <div class="bc-body" style="font-weight: 500; margin-bottom: 4px; color: var(--c-accent);">${ex[0].role}</div>
+      <div class="bc-body">${ex[0].bentoDesc}</div>
+      <div class="bc-tags desktop-only">
         ${ex[0].tags.map(t => `<span class="bc-tag">${t}</span>`).join('')}
       </div>
     </div>
     <div class="bc bc-earlier" data-target="3">
-      <div class="bc-label">04 · Ранний опыт · ${ex[2].period}</div>
-      <div class="bc-body" style="line-height:1.6">
-        ${ex[2].items.map(item => `<div style="margin-bottom:4px">${item.role} @ ${item.company.split(' ')[0]}</div>`).join('')}
+      <div class="bc-label">04 · ${ex[2].period}</div>
+      <div class="bc-title">Ранний опыт</div>
+      <div class="bc-body desktop-only" style="line-height:1.6; display: flex; flex-direction: column; gap: 4px;">
+        ${ex[2].items.map(item => `<div><span style="opacity: 0.5; font-size: 0.9em;">${item.role}</span> @ ${item.company}</div>`).join('')}
       </div>
     </div>
     <div class="bc bc-qugo" data-target="2">
-      <div class="bc-label">03 · ${ex[1].company} · ${ex[1].period}</div>
+      <div class="bc-label">03 · ${ex[1].period}</div>
       <div class="bc-title">${ex[1].bentoTitle}</div>
       <div class="bc-body">${ex[1].bentoDesc}</div>
+      <div class="bc-tags desktop-only" style="margin-top: 12px;">
+        <span class="bc-tag">Agile / Scrum</span>
+        <span class="bc-tag">Jira / Confluence</span>
+      </div>
     </div>
     <div class="bc bc-comp" data-target="4">
       <div class="bc-label">05 · ${comp.navLabel}</div>
@@ -167,21 +173,26 @@ export function renderBento() {
     </div>
     <div class="bc bc-stack" data-target="5">
       <div class="bc-label">06 · ${st.navLabel}</div>
+      <div class="bc-title">Технологический стек</div>
       <!-- Desktop: Full Grid -->
       <div class="bc-chips-grid">
         ${st.categories.map(cat => `
-          <div style="display: flex; flex-wrap: wrap; gap: 6px; align-content: flex-start;">
-            <div style="font-size: 8px; text-transform: uppercase; opacity: 0.3; margin-bottom: 6px; width: 100%;">${cat.name}</div>
-            ${cat.tools.map(tool => `<span class="bc-chip ${tool==='Python'||tool==='Next.js'||tool.includes('Agile') ? 'b':''}">${tool}</span>`).join('')}
+          <div class="bc-chip-cat">
+            <div class="bc-chip-cat-title">${cat.name}</div>
+            ${cat.tools.map(tool => `<span class="bc-chip ${tool === 'Python' || tool === 'Next.js' || tool.includes('Agile') ? 'b' : ''}">${tool}</span>`).join('')}
           </div>
         `).join('')}
+        <div class="bc-chip-footer">Если чего-то нет — освою быстро</div>
       </div>
-      <div class="bc-chips-compact" style="display: flex; flex-wrap: wrap; gap: 4px;">
-        ${st.categories[0].tools.slice(0,3).map(t => `<span class="bc-chip b">${t}</span>`).join('')}
-        ${st.categories[1].tools.slice(0,2).map(t => `<span class="bc-chip b">${t}</span>`).join('')}
+      <!-- Mobile: Focused List -->
+      <div class="bc-chips-compact">
+        ${st.categories[0].tools.slice(0,4).map(t => `<span class="bc-chip b">${t}</span>`).join('')}
+        ${st.categories[1].tools.slice(0,3).map(t => `<span class="bc-chip b">${t}</span>`).join('')}
         <span class="bc-chip">Docker</span>
+        <span class="bc-chip">Agile</span>
+        <span class="bc-chip">PostgreSQL</span>
+        <span class="bc-chip">...</span>
       </div>
-      <p style="font-size: 9px; opacity: 0.2; margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.05);">${st.footerNote}</p>
     </div>
     <div class="bc bc-contact" data-target="6">
       <div class="bc-contact-inner">

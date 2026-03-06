@@ -1,0 +1,7 @@
+=== THOUGHT LOG for TASK-0306-010442-761 ===
+
+The current bento grid mobile implementation uses `height: auto` and `overflow-y: auto`, directly violating the `85vh` rule and allowing the UI to scroll instead of locking to the viewport. Additionally, `js/components.js` injects inline styles for stack chips, violating the CSS integrity rule. 
+
+To fix this, we must enforce a rigid CSS Grid layout (`85vh` fixed height with fractional `fr` rows) and hide non-essential elements on mobile using `.desktop-only`. All inline chip styling must be moved to pure CSS classes (`.bc-chip-cat`, etc.). 
+
+I have generated `blueprint.md` with the necessary structural plans. The output will provide the formatted technical blueprint for the Planner.

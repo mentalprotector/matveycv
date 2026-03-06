@@ -1,5 +1,5 @@
-import { CV_DATA } from './data.js';
-import * as Components from './components.js';
+import { CV_DATA } from './data.js?v=2.5';
+import * as Components from './components.js?v=2.5';
 
 // DOM Elements
 const track = document.getElementById('track');

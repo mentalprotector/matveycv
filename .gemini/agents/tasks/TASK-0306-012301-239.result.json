@@ -1,0 +1,35 @@
+{
+  "summary": "Decomposition of the Mobile Bento & Stack Chip Refactor blueprint into 3 atomic tasks for mobile grid stabilization, JS component refactoring, and cache busting.",
+  "new_tasks": [
+    {
+      "role": "coder",
+      "instruction": "Update css/style.css to enforce the strict mobile bento grid layout and add stack chip utility classes as specified in blueprint.md. In the @media (max-width: 600px) block, set .bento-inner to height: 100vh; overflow: hidden; and .bento-grid to height: 85vh; grid-template-rows: repeat(7, 1fr);. Assign specific grid-column and grid-row coordinates for all .bc-* classes (.bc-hero, .bc-now, .bc-qugo, .bc-earlier, .bc-comp, .bc-stack, .bc-contact) to fit the 14-cell grid defined in the blueprint. Also, add the utility classes .bc-chip-cat, .bc-chip-cat-title, and .bc-chip-footer to replace existing inline styles in the stack component.",
+      "context_paths": [
+        "css/style.css",
+        "blueprint.md"
+      ],
+      "model": "flash"
+    },
+    {
+      "role": "coder",
+      "instruction": "Refactor js/components.js to strip inline styles and implement overflow protection within the fixed-height mobile bento grid. In renderBento, update the .bc-stack card to use the new .bc-chip-cat, .bc-chip-cat-title, and .bc-chip-footer classes instead of inline style attributes. Remove the style='gap: 6px;' from .bc-chips-compact. Additionally, add the .desktop-only class to verbose elements to ensure they don't overflow their grid cells on mobile: add it to .bc-tags in .bc-now and to .bc-body (or the items within) in .bc-earlier. Verify .bc-qugo already has it.",
+      "context_paths": [
+        "js/components.js",
+        "css/style.css",
+        "blueprint.md"
+      ],
+      "model": "pro"
+    },
+    {
+      "role": "coder",
+      "instruction": "Perform cache busting and final layout verification. Update the version parameter from ?v=2.4 to ?v=2.5 for all script and style imports in index.html, js/script.js, and js/components.js. Verify that the mobile bento grid now fits strictly within 85vh and that the stack component displays correctly with the new CSS classes.",
+      "context_paths": [
+        "index.html",
+        "js/script.js",
+        "js/components.js"
+      ],
+      "model": "flash"
+    }
+  ],
+  "artifact_type": "planning"
+}

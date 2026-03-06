@@ -1,0 +1,100 @@
+[
+  {
+    "timestamp": "2026-03-06T01:02:19.020725",
+    "category": "TASK_CREATED",
+    "message": "Task TASK-0306-010219-279 added for router",
+    "role": "router",
+    "task_id": "TASK-0306-010219-279"
+  },
+  {
+    "timestamp": "2026-03-06T01:04:18.753064",
+    "category": "TASK_STARTED",
+    "message": "Started TASK-0306-010219-279",
+    "role": "router",
+    "task_id": "TASK-0306-010219-279"
+  },
+  {
+    "timestamp": "2026-03-06T01:04:42.844418",
+    "category": "TASK_CREATED",
+    "message": "Task TASK-0306-010442-761 added for architect",
+    "role": "architect",
+    "task_id": "TASK-0306-010442-761"
+  },
+  {
+    "timestamp": "2026-03-06T01:04:44.850338",
+    "category": "TASK_STARTED",
+    "message": "Started TASK-0306-010442-761",
+    "role": "architect",
+    "task_id": "TASK-0306-010442-761"
+  },
+  {
+    "timestamp": "2026-03-06T01:07:47.364834",
+    "category": "TASK_FAILURE",
+    "message": "Task TASK-0306-010442-761 failed: No result.json generated",
+    "role": "architect",
+    "task_id": "TASK-0306-010442-761"
+  },
+  {
+    "timestamp": "2026-03-06T01:21:00.916178",
+    "category": "TASK_FAILURE",
+    "message": "Task TASK-0306-010442-761 failed: No result.json generated",
+    "role": "architect",
+    "task_id": "TASK-0306-010442-761"
+  },
+  {
+    "timestamp": "2026-03-06T01:23:01.174655",
+    "category": "TASK_CREATED",
+    "message": "Task TASK-0306-012301-239 added for planner",
+    "role": "planner",
+    "task_id": "TASK-0306-012301-239"
+  },
+  {
+    "timestamp": "2026-03-06T01:25:00.903961",
+    "category": "TASK_STARTED",
+    "message": "Started TASK-0306-012301-239",
+    "role": "planner",
+    "task_id": "TASK-0306-012301-239"
+  },
+  {
+    "timestamp": "2026-03-06T01:37:03.134078",
+    "category": "TASK_CREATED",
+    "message": "Task TASK-0306-013703-139 added for coder",
+    "role": "coder",
+    "task_id": "TASK-0306-013703-139"
+  },
+  {
+    "timestamp": "2026-03-06T01:37:03.248158",
+    "category": "TASK_CREATED",
+    "message": "Task TASK-0306-013703-978 added for coder",
+    "role": "coder",
+    "task_id": "TASK-0306-013703-978"
+  },
+  {
+    "timestamp": "2026-03-06T01:37:03.384195",
+    "category": "TASK_CREATED",
+    "message": "Task TASK-0306-013703-551 added for coder",
+    "role": "coder",
+    "task_id": "TASK-0306-013703-551"
+  },
+  {
+    "timestamp": "2026-03-06T01:38:01.153872",
+    "category": "TASK_STARTED",
+    "message": "Started TASK-0306-013703-139",
+    "role": "coder",
+    "task_id": "TASK-0306-013703-139"
+  },
+  {
+    "timestamp": "2026-03-06T01:39:50.280588",
+    "category": "TASK_STARTED",
+    "message": "Started TASK-0306-013703-978",
+    "role": "coder",
+    "task_id": "TASK-0306-013703-978"
+  },
+  {
+    "timestamp": "2026-03-06T01:42:07.131727",
+    "category": "TASK_STARTED",
+    "message": "Started TASK-0306-013703-551",
+    "role": "coder",
+    "task_id": "TASK-0306-013703-551"
+  }
+]

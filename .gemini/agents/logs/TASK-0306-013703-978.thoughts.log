@@ -1,0 +1,10 @@
+=== THOUGHT LOG for TASK-0306-013703-978 ===
+
+I have successfully refactored `js/components.js`.
+1.  Replaced inline styling in `.bc-stack` (specifically within `.bc-chips-grid`) with the CSS classes `.bc-chip-cat`, `.bc-chip-cat-title`, and `.bc-chip-footer`.
+2.  Removed the `style='gap: 6px;'` attribute from `.bc-chips-compact`.
+3.  Added the `.desktop-only` class to the `.bc-tags` container inside the `.bc-now` component.
+4.  Added the `.desktop-only` class to the `.bc-body` container inside the `.bc-earlier` component.
+5.  Verified that `.bc-qugo` already has the `.desktop-only` class on its `.bc-tags` container.
+
+The `renderBento` function has been completely updated to respect the viewport lock on mobile, using graceful content hiding instead of forcing overflow.

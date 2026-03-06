@@ -1,0 +1,29 @@
+{
+  "summary": "Activating the Nexus Elite Dev Loop to address mobile bento grid overflow and refine chip styles in the stack card. This includes enforcing the 85vh viewport lock and standardizing CSS for skill chips.",
+  "pipeline": {
+    "name": "Bento Grid and Chip Style Fix",
+    "template_id": "nexus_elite_dev",
+    "stages": [
+      {
+        "name": "blueprint",
+        "tasks": [
+          {
+            "role": "architect",
+            "instruction": "Analyze the current implementation of the bento grid in `css/style.css` and `js/components.js`. Identify the cause of mobile overflow (violating the 85vh rule) and evaluate the 'stack' card chip styling for cleanup. Provide a `blueprint.md` with specific CSS and JS modification plans."
+          }
+        ]
+      },
+      {
+        "name": "planning",
+        "depends_on": "blueprint",
+        "tasks": [
+          {
+            "role": "planner",
+            "instruction": "Decompose the approved blueprint into atomic tasks for fixing the grid overflow, implementing the `mobile-only` visibility logic if necessary, and refactoring the chip styles."
+          }
+        ]
+      }
+    ]
+  },
+  "artifact_type": "general"
+}

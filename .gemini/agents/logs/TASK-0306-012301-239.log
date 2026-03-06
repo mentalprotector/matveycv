@@ -1,0 +1,146 @@
+=== INPUT ===
+# SYSTEM GUARD
+# SYSTEM GUARD: CORE DIRECTIVES
+
+## 🛡️ SECURITY & INTEGRITY
+- **Credential Protection:** NEVER print, log, or commit API keys, passwords, or secrets.
+- **System Isolation:** Do not modify `.git`, `.gemini`, or system configuration files unless explicitly instructed.
+- **Surgical Changes:** Modify only what is required. Avoid unrelated refactoring.
+
+## 🧠 THOUGHT PROTOCOL (MANDATORY)
+- **Think Before Acting:** Every response MUST start with a `<thought>` block.
+- **Content:** Inside `<thought>`, analyze the request, evaluate risks, plan your steps, and perform self-criticism.
+- **Separation:** The actual action (Code, JSON, or Answer) must follow AFTER the closing `</thought>` tag.
+- **Guardrail:** Keep thoughts concise. If reasoning exceeds 4000 tokens or significantly dominates the context, summarize and truncate.
+- **Structure:**
+  ```
+  <thought>
+  [Your reasoning, strategy, and edge-case analysis here]
+  </thought>
+  [Your Actionable Output (JSON/Code/Response)]
+  ```
+
+## 📂 CONTEXT USAGE
+- **Dynamic Awareness:** Use project documentation (`ROADMAP.md`, etc.) to align with the overall project vision.
+- **Inherited Knowledge:** Leverage context from previous agents (Architects, Planners) to maintain technical continuity.
+- **File Stewardship:** Read only the files necessary for the task to conserve context tokens.
+
+## 📢 COMMUNICATION
+- **Conciseness:** Provide high-signal, professional technical output.
+- **JSON Protocol:** If your role requires JSON results, ensure the output is a single, valid JSON block.
+
+# ROLE IDENTITY
+# Role: Planner / Technical Lead
+
+**Objective:** You are the **Execution Gateway**. You stand between the Architects (Design) and the Coders (Implementation). Your goal is to receive technical blueprints, UI specs, and user stories, and convert them into a **Step-by-Step implementation roadmap** by spawning real development tasks.
+
+**Crucial:** You do NOT just describe the plan. You **CREATE** the tasks. Your output MUST be a valid JSON file saved as `.gemini/agents/tasks/{CURRENT_TASK_ID}.result.json` containing an array of `new_tasks`.
+
+## 📦 Responsibility
+1. **Analyze Design:** Read the `result.json` files from `ui_ux_designer`, `architect`, and `scenario_architect` (provided in context).
+2. **Decompose:** Break down the design into small, independent units of work.
+3. **Spawn:** For each unit, create a `new_task` for the `coder` or `reviewer`.
+4. **Contextualize:** Provide the Coder with exact file paths and logic descriptions to minimize hallucinations.
+
+## 📦 JSON Schema (Strict)
+
+You must output **ONLY** a valid JSON block inside a code fence. No conversational filler.
+
+```json
+{
+  "summary": "High-level overview of the plan...",
+  "new_tasks": [
+    {
+      "role": "coder",                // Options: coder, investigator, architect, sweeper
+      "instruction": "Detailed instruction for the agent. Specify files to edit, logic to implement, and constraints.",
+      "context_paths": ["src/api.py"], // Optional: Files relevant to this task
+      "model": "flash",                // Optional: "flash" or "pro". Use "flash" for simple tasks, "pro" for complex ones.
+      "dependencies": []               // Optional: List of task IDs this task depends on (if applicable within this batch)
+    }
+  ]
+}
+```
+
+Activate skill agent-planner.
+
+Activate skill deep-thinker.
+
+# PROJECT CONTEXT
+
+--- PROJECT DOC: GEMINI.md ---
+# 🌐 MATVEY CV PROTECTION PROTOCOL - V1.1
+
+## 🚀 Mission
+Matvey's personal CV/Resume. Professional, clean, zero-bug policy. Optimized for viewport-fit mobile experience.
+
+## 🏗 Architecture
+- **Data-Driven:** All content lives in `js/data.js`.
+- **Componentized:** HTML fragments are generated in `js/components.js`.
+- **Logic:** Navigation and observers are in `js/script.js`.
+- **Cache Busting:** Always update version `?v=X.X` in `index.html` script imports after changes.
+
+## ⚠️ CRITICAL RULES
+1.  **Bento Viewport Lock:** On mobile, the bento grid MUST fit within `85vh` to prevent internal scrolling. Use `mobile-only` class to hide non-essential items if height grows.
+2.  **No Strings Transformation:** Do NOT use `.split(' ')[0]` or `.toUpperCase()` on company names or roles unless explicitly requested. Data in `data.js` is the source of truth.
+3.  **CSS Integrity:** Use Vanilla CSS in `css/style.css`. Avoid inline styles unless they are dynamic.
+4.  **Syntax Safety:** Replace entire functions in `js/components.js` to ensure block-level integrity.
+
+## 🛠 Deployment (DEV)
+- **Local Dev:** Edit files directly.
+- **Docker:** `docker compose up -d --build` (Note: ensure docker is in PATH).
+- **Hard Refresh:** Always test with `Ctrl + F5` to bypass JS module caching.
+
+## 🧭 Session Status
+- [x] Mode: Stabilization (DONE)
+- [x] Bento Grid: Optimized for mobile (DONE)
+- [x] Content: Russian translations & role sync (DONE)
+- [x] Documentation: GEMINI.md updated (DONE)
+
+
+
+# INHERITED CONTEXT
+
+--- INHERITED CONTEXT (from architect TASK-0306-010442-761) ---
+Technical blueprint for mobile bento grid stabilization and stack chip refactor created in blueprint.md.
+
+
+# TASK INSTRUCTION
+Decompose the approved blueprint into atomic tasks for fixing the grid overflow, implementing the `mobile-only` visibility logic if necessary, and refactoring the chip styles.
+
+
+Execute the task and provide result.json if required by your role. Use 'python scripts/agent_orchestrator.py complete TASK-0306-012301-239' when done.
+
+=== OUTPUT STREAM ===
+{"type":"init","timestamp":"2026-03-06T01:25:31.784Z","session_id":"c951cf9a-7dc3-4e46-b038-541c3fe2897d","model":"gemini-3-flash-preview"}
+{"type":"message","timestamp":"2026-03-06T01:25:31.787Z","role":"user","content":"# SYSTEM GUARD\n# SYSTEM GUARD: CORE DIRECTIVES\n\n## 🛡️ SECURITY & INTEGRITY\n- **Credential Protection:** NEVER print, log, or commit API keys, passwords, or secrets.\n- **System Isolation:** Do not modify `.git`, `.gemini`, or system configuration files unless explicitly instructed.\n- **Surgical Changes:** Modify only what is required. Avoid unrelated refactoring.\n\n## 🧠 THOUGHT PROTOCOL (MANDATORY)\n- **Think Before Acting:** Every response MUST start with a `<thought>` block.\n- **Content:** Inside `<thought>`, analyze the request, evaluate risks, plan your steps, and perform self-criticism.\n- **Separation:** The actual action (Code, JSON, or Answer) must follow AFTER the closing `</thought>` tag.\n- **Guardrail:** Keep thoughts concise. If reasoning exceeds 4000 tokens or significantly dominates the context, summarize and truncate.\n- **Structure:**\n  ```\n  <thought>\n  [Your reasoning, strategy, and edge-case analysis here]\n  </thought>\n  [Your Actionable Output (JSON/Code/Response)]\n  ```\n\n## 📂 CONTEXT USAGE\n- **Dynamic Awareness:** Use project documentation (`ROADMAP.md`, etc.) to align with the overall project vision.\n- **Inherited Knowledge:** Leverage context from previous agents (Architects, Planners) to maintain technical continuity.\n- **File Stewardship:** Read only the files necessary for the task to conserve context tokens.\n\n## 📢 COMMUNICATION\n- **Conciseness:** Provide high-signal, professional technical output.\n- **JSON Protocol:** If your role requires JSON results, ensure the output is a single, valid JSON block.\n\n# ROLE IDENTITY\n# Role: Planner / Technical Lead\n\n**Objective:** You are the **Execution Gateway**. You stand between the Architects (Design) and the Coders (Implementation). Your goal is to receive technical blueprints, UI specs, and user stories, and convert them into a **Step-by-Step implementation roadmap** by spawning real development tasks.\n\n**Crucial:** You do NOT just describe the plan. You **CREATE** the tasks. Your output MUST be a valid JSON file saved as `.gemini/agents/tasks/{CURRENT_TASK_ID}.result.json` containing an array of `new_tasks`.\n\n## 📦 Responsibility\n1. **Analyze Design:** Read the `result.json` files from `ui_ux_designer`, `architect`, and `scenario_architect` (provided in context).\n2. **Decompose:** Break down the design into small, independent units of work.\n3. **Spawn:** For each unit, create a `new_task` for the `coder` or `reviewer`.\n4. **Contextualize:** Provide the Coder with exact file paths and logic descriptions to minimize hallucinations.\n\n## 📦 JSON Schema (Strict)\n\nYou must output **ONLY** a valid JSON block inside a code fence. No conversational filler.\n\n```json\n{\n  \"summary\": \"High-level overview of the plan...\",\n  \"new_tasks\": [\n    {\n      \"role\": \"coder\",                // Options: coder, investigator, architect, sweeper\n      \"instruction\": \"Detailed instruction for the agent. Specify files to edit, logic to implement, and constraints.\",\n      \"context_paths\": [\"src/api.py\"], // Optional: Files relevant to this task\n      \"model\": \"flash\",                // Optional: \"flash\" or \"pro\". Use \"flash\" for simple tasks, \"pro\" for complex ones.\n      \"dependencies\": []               // Optional: List of task IDs this task depends on (if applicable within this batch)\n    }\n  ]\n}\n```\n\nActivate skill agent-planner.\n\nActivate skill deep-thinker.\n\n# PROJECT CONTEXT\n\n--- PROJECT DOC: GEMINI.md ---\n# 🌐 MATVEY CV PROTECTION PROTOCOL - V1.1\n\n## 🚀 Mission\nMatvey's personal CV/Resume. Professional, clean, zero-bug policy. Optimized for viewport-fit mobile experience.\n\n## 🏗 Architecture\n- **Data-Driven:** All content lives in `js/data.js`.\n- **Componentized:** HTML fragments are generated in `js/components.js`.\n- **Logic:** Navigation and observers are in `js/script.js`.\n- **Cache Busting:** Always update version `?v=X.X` in `index.html` script imports after changes.\n\n## ⚠️ CRITICAL RULES\n1.  **Bento Viewport Lock:** On mobile, the bento grid MUST fit within `85vh` to prevent internal scrolling. Use `mobile-only` class to hide non-essential items if height grows.\n2.  **No Strings Transformation:** Do NOT use `.split(' ')[0]` or `.toUpperCase()` on company names or roles unless explicitly requested. Data in `data.js` is the source of truth.\n3.  **CSS Integrity:** Use Vanilla CSS in `css/style.css`. Avoid inline styles unless they are dynamic.\n4.  **Syntax Safety:** Replace entire functions in `js/components.js` to ensure block-level integrity.\n\n## 🛠 Deployment (DEV)\n- **Local Dev:** Edit files directly.\n- **Docker:** `docker compose up -d --build` (Note: ensure docker is in PATH).\n- **Hard Refresh:** Always test with `Ctrl + F5` to bypass JS module caching.\n\n## 🧭 Session Status\n- [x] Mode: Stabilization (DONE)\n- [x] Bento Grid: Optimized for mobile (DONE)\n- [x] Content: Russian translations & role sync (DONE)\n- [x] Documentation: GEMINI.md updated (DONE)\n\n\n\n# INHERITED CONTEXT\n\n--- INHERITED CONTEXT (from architect TASK-0306-010442-761) ---\nTechnical blueprint for mobile bento grid stabilization and stack chip refactor created in blueprint.md.\n\n\n# TASK INSTRUCTION\nDecompose the approved blueprint into atomic tasks for fixing the grid overflow, implementing the `mobile-only` visibility logic if necessary, and refactoring the chip styles.\n\n\nExecute the task and provide result.json if required by your role. Use 'python scripts/agent_orchestrator.py complete TASK-0306-012301-239' when done."}
+{"type":"tool_use","timestamp":"2026-03-06T01:25:35.813Z","tool_name":"read_file","tool_id":"read_file_1772760335812_0","parameters":{"file_path":"blueprint.md"}}
+{"type":"tool_result","timestamp":"2026-03-06T01:25:35.860Z","tool_id":"read_file_1772760335812_0","status":"success","output":""}
+{"type":"tool_use","timestamp":"2026-03-06T01:25:43.586Z","tool_name":"grep_search","tool_id":"grep_search_1772760343586_0","parameters":{"pattern":"stack"}}
+{"type":"tool_result","timestamp":"2026-03-06T01:25:43.685Z","tool_id":"grep_search_1772760343586_0","status":"success","output":"Found 18 matches"}
+{"type":"tool_use","timestamp":"2026-03-06T01:25:46.605Z","tool_name":"read_file","tool_id":"read_file_1772760346605_0","parameters":{"end_line":170,"file_path":"js/components.js","start_line":95}}
+{"type":"tool_result","timestamp":"2026-03-06T01:25:46.621Z","tool_id":"read_file_1772760346605_0","status":"success","output":"Read lines 95-170 of 208 from js/components.js"}
+{"type":"tool_use","timestamp":"2026-03-06T01:25:50.604Z","tool_name":"read_file","tool_id":"read_file_1772760350604_0","parameters":{"file_path":"js/components.js","start_line":171}}
+{"type":"tool_result","timestamp":"2026-03-06T01:25:50.621Z","tool_id":"read_file_1772760350604_0","status":"success","output":"Read lines 171-208 of 208 from js/components.js"}
+{"type":"tool_use","timestamp":"2026-03-06T01:25:54.539Z","tool_name":"grep_search","tool_id":"grep_search_1772760354538_0","parameters":{"pattern":"only"}}
+{"type":"tool_result","timestamp":"2026-03-06T01:25:54.573Z","tool_id":"grep_search_1772760354538_0","status":"success","output":"Found 10 matches"}
+{"type":"tool_use","timestamp":"2026-03-06T01:26:00.905Z","tool_name":"grep_search","tool_id":"grep_search_1772760360904_0","parameters":{"pattern":"v="}}
+{"type":"tool_result","timestamp":"2026-03-06T01:26:00.937Z","tool_id":"grep_search_1772760360904_0","status":"success","output":"Found 5 matches"}
+{"type":"message","timestamp":"2026-03-06T01:26:11.181Z","role":"assistant","content":"```json\n{\n  \"summary\": \"Decomposition of the Mobile Bento & Stack Chip Refactor blueprint into 3 atomic tasks for mobile","delta":true}
+{"type":"message","timestamp":"2026-03-06T01:26:11.213Z","role":"assistant","content":" grid stabilization, JS component refactoring, and cache busting.\",\n  \"new_tasks\": [\n    {\n      \"role\": \"coder\",\n      \"instruction\": \"Update css/style.css to enforce the strict mobile bento grid layout and add stack chip utility classes as specified in blueprint.md.","delta":true}
+{"type":"message","timestamp":"2026-03-06T01:26:11.242Z","role":"assistant","content":" In the @media (max-width: 600px) block, set .bento-inner to height: 100vh; overflow: hidden; and .bento-grid to height: 85vh; grid-template-rows: repeat(7, 1fr);. Assign specific","delta":true}
+{"type":"message","timestamp":"2026-03-06T01:26:11.279Z","role":"assistant","content":" grid-column and grid-row coordinates for all .bc-* classes (.bc-hero, .bc-now, .bc-qugo, .bc-earlier, .bc-comp, .bc-stack, .bc-contact) to fit the 14-cell grid defined in the blueprint.","delta":true}
+{"type":"message","timestamp":"2026-03-06T01:26:11.302Z","role":"assistant","content":" Also, add the utility classes .bc-chip-cat, .bc-chip-cat-title, and .bc-chip-footer to replace existing inline styles in the stack component.\",\n      \"context_paths\": [\"css/style.css\", \"blueprint.md\"],\n      \"model\": \"flash\"\n","delta":true}
+{"type":"message","timestamp":"2026-03-06T01:26:11.548Z","role":"assistant","content":"    },\n    {\n      \"role\": \"coder\",\n      \"instruction\": \"Refactor js/components.js to strip inline styles and implement overflow protection within the fixed-height mobile bento grid. In renderBento, update the .bc-stack card to use the new .bc-chip-","delta":true}
+{"type":"message","timestamp":"2026-03-06T01:26:11.883Z","role":"assistant","content":"cat, .bc-chip-cat-title, and .bc-chip-footer classes instead of inline style attributes. Remove the style='gap: 6px;' from .bc-chips-compact. Additionally, add the .desktop-only class to verbose elements to ensure they don't overflow their grid cells on mobile","delta":true}
+{"type":"message","timestamp":"2026-03-06T01:26:12.278Z","role":"assistant","content":": add it to .bc-tags in .bc-now and to .bc-body (or the items within) in .bc-earlier. Verify .bc-qugo already has it.\",\n      \"context_paths\": [\"js/components.js\", \"css/style.css\", \"","delta":true}
+{"type":"message","timestamp":"2026-03-06T01:26:12.669Z","role":"assistant","content":"blueprint.md\"],\n      \"model\": \"pro\"\n    },\n    {\n      \"role\": \"coder\",\n      \"instruction\": \"Perform cache busting and final layout verification. Update the version parameter from ?v=2.4 to ?v=2.5 for all script and style imports in index.","delta":true}
+{"type":"message","timestamp":"2026-03-06T01:26:12.928Z","role":"assistant","content":"html, js/script.js, and js/components.js. Verify that the mobile bento grid now fits strictly within 85vh and that the stack component displays correctly with the new CSS classes.\",\n      \"context_paths\": [\"index.html\", \"js/script.js\", \"js/components","delta":true}
+{"type":"message","timestamp":"2026-03-06T01:26:12.973Z","role":"assistant","content":".js\"],\n      \"model\": \"flash\"\n    }\n  ]\n}\n```\n\npython scripts/agent_orchestrator.py complete TASK-0306-012301-239","delta":true}
+{"type":"result","timestamp":"2026-03-06T01:26:12.992Z","status":"success","stats":{"total_tokens":49093,"input_tokens":45223,"output_tokens":755,"cached":27651,"input":17572,"duration_ms":41209,"tool_calls":6}}
+
+
+=== STDERR ===
+YOLO mode is enabled. All tool calls will be automatically approved.
+Loaded cached credentials.
+YOLO mode is enabled. All tool calls will be automatically approved.
+
