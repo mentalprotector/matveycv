@@ -84,15 +84,15 @@ export const CV_DATA = {
     footerNote: "Если нужной технологии нет в списке — быстро освою под проект.",
     categories: [
       {
-        name: "AI & Data",
+        name: "ИИ и Данные",
         tools: ["Python", "LLM", "Agentic Workflows", "PyTorch", "PostgreSQL", "Redis"]
       },
       {
-        name: "Infrastructure",
+        name: "Инфраструктура",
         tools: ["Next.js", "React Native", "Docker", "CI/CD", "Microservices", "RabbitMQ"]
       },
       {
-        name: "Management",
+        name: "Управление",
         tools: ["Agile / Scrum", "Kanban", "Jira / Confluence", "BPMN / UML", "MiniApps", "Product Analytics"]
       }
     ]
