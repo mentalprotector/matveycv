@@ -145,14 +145,14 @@ export function renderBento() {
     </div>
     <div class="bc bc-earlier" data-target="3">
       <div class="bc-label">04 · ${ex[2].period}</div>
-      <div class="bc-title">Ранний опыт</div>
+      <div class="bc-title">Ранний <em>опыт</em></div>
       <div class="bc-body" style="line-height:1.6; display: flex; flex-direction: column; gap: 4px;">
         ${ex[2].items.map(item => `<div><span style="opacity: 0.5; font-size: 0.9em;">${item.role}</span> @ ${item.company}</div>`).join('')}
       </div>
     </div>
     <div class="bc bc-qugo" data-target="2">
       <div class="bc-label">03 · ${ex[1].period}</div>
-      <div class="bc-title">${ex[1].bentoTitle}</div>
+      <div class="bc-title">PM Qugo <em>Fintech</em></div>
       <div class="bc-body">${ex[1].bentoDesc}</div>
       <div class="bc-tags desktop-only" style="margin-top: 12px;">
         <span class="bc-tag">Agile / Scrum</span>
@@ -161,14 +161,14 @@ export function renderBento() {
     </div>
     <div class="bc bc-comp" data-target="4">
       <div class="bc-label">05 · ${comp.navLabel}</div>
-      <div class="bc-title">${comp.title}</div>
+      <div class="bc-title">Сильные <em>стороны</em></div>
       <div class="bc-comp-list">
         ${comp.list.map(item => `<div class="bc-comp-row">${item.name}</div>`).join('')}
       </div>
     </div>
     <div class="bc bc-stack" data-target="5">
       <div class="bc-label">06 · ${st.navLabel}</div>
-      <div class="bc-title">Стек технологий</div>
+      <div class="bc-title">Стек <em>технологий</em></div>
       <!-- Desktop: Full Grid -->
       <div class="bc-chips-grid">
         ${st.categories.map(cat => `
