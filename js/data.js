@@ -2,7 +2,7 @@ export const CV_DATA = {
   profile: {
     name: "Матвей",
     surname: "Борисов",
-    roles: ["Senior PM", "AI Engineer", "Продуктовый аналитик"],
+    roles: ["Senior PM", "ИИ инженер", "Продуктовый Аналитик"],
     status: "Открыт для предложений · Senior/Lead",
     quote: "Impact Engineering: проектирование ИИ-решений и автоматизации, напрямую влияющих на прибыль.",
     links: [
@@ -13,10 +13,10 @@ export const CV_DATA = {
   experience: [
     {
       id: "now",
-      company: "Alfatapes",
+      company: "alfatapes",
       period: "2025 — н.в.",
-      role: "Cofounder & AI Automation Lead",
-      desc: "Проектирование автономных ИИ-агентов для CRM и контента. IT-консалтинг и запуск MVP для сторонних заказчиков.",
+      role: "Сооснователь & Инженер",
+      desc: "Проектирование автономных ИИ-агентов для автоматизации коммуникаций и любых бизнес-процессов. IT-консалтинг и быстрый запуск MVP.",
       tags: ["ИИ-оркестрация", "Python", "LLM"],
       theme: "c-cream",
       navLabel: "Сейчас",
@@ -28,14 +28,10 @@ export const CV_DATA = {
       period: "2020 — 2024",
       role: "Project Manager / Product Delivery",
       desc: "Провёл продукт от сырого MVP до высоконагруженной системы с миллиардными оборотами. Масштабировал процессы и устранял технические затыки.",
-      details: [
-        { title: "Process Evolution", text: "Развитие продуктовых процессов в условиях 5-кратного роста штата и регулярных структурных изменений." },
-        { title: "Delivery Excellence", text: "Сохранение высокого темпа поставки фич при переходе продукта от MVP к сложной высоконагруженной системе." }
-      ],
       tags: ["Product Delivery", "Масштабирование", "Финтех"],
       theme: "c-green",
       navLabel: "Qugo",
-      bentoTitle: "PM / <em>Delivery Excellence</em>",
+      bentoTitle: "PM Qugo Fintech",
       bentoDesc: "Развитие процессов в условиях быстрого роста и реструктуризаций. Обеспечение высокого темпа поставки фич."
     },
     {
@@ -47,20 +43,20 @@ export const CV_DATA = {
       items: [
         {
           period: "2019–2020",
-          role: "International PM",
+          role: "Менеджер международных проектов",
           company: "Axmit OÜ",
           desc: "Поставка 3 международных сервисов (США, Франция, Эстония)."
         },
         {
           period: "2018–2019",
-          role: "Ad Optimizer",
+          role: "Оптимизатор рекламы",
           company: "Adsterra",
           desc: "Оптимизация рекламных кампаний, работа с ClickHouse и NoSQL для анализа трафика."
         },
         {
           period: "2016–2017",
-          role: "Affiliate Manager",
-          company: "Big Deal Agency",
+          role: "Медиабайер",
+          company: "BigDealAgency",
           desc: "CPA-кампании, арбитраж трафика и техническая настройка пикселей/постбэков."
         }
       ]
@@ -73,11 +69,11 @@ export const CV_DATA = {
     theme: "c-slate",
     list: [
       { name: "Impact Engineering", desc: "Внедрение ИИ-решений, напрямую влияющих на выручку и KPI бизнеса." },
-      { name: "AI & Agent Architecture", desc: "Проектирование автономных мультиагентных систем и LLM-пайплайнов." },
-      { name: "Product Delivery & Scaling", desc: "Масштабирование MVP до систем с миллиардными оборотами. Адаптация процессов под рост команды." },
-      { name: "Data-Driven Strategy", desc: "Аналитика и дашборды чтобы понять что происходит с бизнесом и сформировать продуктовый вектор." },
-      { name: "System Optimization", desc: "Переход с монолита на микросервисы (Redis, RabbitMQ, шардирование)." },
-      { name: "Technical Leadership", desc: "Связка бизнес-целей с технической реализацией: Backend, Frontend, QA, DevOps." }
+      { name: "ИИ-архитектура", desc: "Проектирование автономных мультиагентных систем и сложных LLM-пайплайнов." },
+      { name: "Масштабирование продуктов", desc: "Развитие MVP до систем с миллиардными оборотами и адаптация процессов под рост." },
+      { name: "Стратегия на данных", desc: "Глубокая аналитика для поиска точек роста и формирования продуктового вектора." },
+      { name: "Оптимизация систем", desc: "Перевод сложных монолитов на надежные микросервисы и современные стеки." },
+      { name: "Техническое лидерство", desc: "Синхронизация бизнес-целей с реализацией: от бэкенда до DevOps." }
     ]
   },
   stack: {
