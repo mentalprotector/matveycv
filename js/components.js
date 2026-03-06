@@ -66,7 +66,7 @@ export function renderCompetencies() {
   return `
     <div class="card ${c.theme}" id="c5" data-i="4">
       <span class="cn">05/07</span>
-      <div class="lbl">${c.title}</div>
+      <div class="lbl">${c.navLabel}</div>
       <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px">
         <h2 class="serif-h">Сильные<br><em>стороны</em></h2>
         <div class="comp-grid">

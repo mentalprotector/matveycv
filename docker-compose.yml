@@ -1,7 +1,7 @@
 services:
   cv-refactor:
     build: .
-    container_name: cv-refactor
+    container_name: cv-prod
     networks:
       - web_proxy
     restart: always
