@@ -1,5 +1,8 @@
 import { CV_DATA } from './data.js?v=2.4';
 import * as Components from './components.js?v=2.4';
+import { WebHaptics } from 'https://esm.sh/web-haptics';
+
+const haptics = new WebHaptics();
 
 // DOM Elements
 const track = document.getElementById('track');
