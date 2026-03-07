@@ -1,8 +1,18 @@
 import { CV_DATA } from './data.js?v=2.4';
 import * as Components from './components.js?v=2.4';
-import { WebHaptics } from 'https://esm.sh/web-haptics';
 
-const haptics = new WebHaptics();
+const haptics = {
+  trigger: (type) => {
+    if (typeof navigator === 'undefined' || !navigator.vibrate) return;
+    try {
+      if (type === 'light') navigator.vibrate(15);
+      else if (type === 'medium') navigator.vibrate(30);
+      else if (type === 'selection') navigator.vibrate(20);
+      else if (type === 'nudge') navigator.vibrate([80, 50, 40]);
+      else if (type === 'reverse-nudge') navigator.vibrate([40, 50, 80]);
+    } catch(e) {}
+  }
+};
 
 // DOM Elements
 const track = document.getElementById('track');
