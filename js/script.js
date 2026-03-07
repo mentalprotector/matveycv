@@ -68,7 +68,10 @@ function setupNavigation() {
       <rect x="9" y="9" width="6" height="6" rx="1.5" fill="currentColor"/>
     </svg>
   `;
-  bentoBtn.addEventListener('click', openBento);
+  bentoBtn.addEventListener('click', () => {
+    haptics.trigger('medium');
+    openBento();
+  });
   dotsEl.appendChild(bentoBtn);
 
   // Nav Dots
@@ -109,7 +112,7 @@ function setActive(i) {
     if (i > cur) {
       haptics.trigger('nudge');
     } else {
-      haptics.trigger([{ duration: 40, intensity: 0.3 }, { delay: 60, duration: 80, intensity: 0.8 }]);
+      haptics.trigger('reverse-nudge');
     }
   }
 
