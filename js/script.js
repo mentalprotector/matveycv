@@ -95,6 +95,14 @@ function setupObserver() {
 }
 
 function setActive(i) {
+  if (i !== cur && !bentoOpen) {
+    if (i > cur) {
+      haptics.trigger('nudge');
+    } else {
+      haptics.trigger([{ duration: 40, intensity: 0.3 }, { delay: 60, duration: 80, intensity: 0.8 }]);
+    }
+  }
+
   cur = i;
   const allDots = dotsEl.querySelectorAll('.dot');
   allDots.forEach((d, j) => d.classList.toggle('on', j === i));
