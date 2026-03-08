@@ -8,8 +8,10 @@ const haptics = {
       if (type === 'light') navigator.vibrate(15);
       else if (type === 'medium') navigator.vibrate(30);
       else if (type === 'selection') navigator.vibrate(20);
-      else if (type === 'nudge') navigator.vibrate([80, 50, 40]);
-      else if (type === 'reverse-nudge') navigator.vibrate([40, 50, 80]);
+      else if (type === 'nudge') navigator.vibrate([60, 50, 30, 50, 15, 50, 10]); // Sliding forward feel
+      else if (type === 'reverse-nudge') navigator.vibrate([10, 50, 15, 50, 30, 50, 60]); // Sliding backward feel
+      else if (type === 'expand') navigator.vibrate([10, 80, 20, 80, 30, 80, 40, 60, 60]); // 450ms ascending
+      else if (type === 'collapse') navigator.vibrate([60, 60, 40, 80, 30, 80, 20, 80, 10]); // 450ms descending
     } catch(e) {}
   }
 };
@@ -172,6 +174,7 @@ function openBento() {
   bento.style.display = 'flex';
   
   requestAnimationFrame(() => {
+    haptics.trigger('expand');
     bento.classList.add('open');
     viewport.style.opacity = '0';
     bar.style.opacity = '0';
@@ -215,6 +218,7 @@ function openBento() {
 
 function closeBento(targetIdx) {
   if (!bentoOpen) return;
+  haptics.trigger('collapse');
   const targetCard = cards[targetIdx !== undefined ? targetIdx : cur];
   const targetCell = bentoItems.find(b => parseInt(b.dataset.target) === (targetIdx !== undefined ? targetIdx : cur));
   const destCard = targetCard.getBoundingClientRect();
