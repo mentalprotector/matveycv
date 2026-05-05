@@ -1,4 +1,16 @@
-import { CV_DATA } from './data.js?v=2.4';
+import { CV_DATA } from './data.js?v=2.5';
+
+// Role formatting: remove <br>, use <em> for second part
+function formatRole(role) {
+  if (role.includes(' / ')) {
+    const parts = role.split(' / ');
+    return `${parts[0]} <span class="role-sep">/</span> <em>${parts[1]}</em>`;
+  } else if (role.includes(' & ')) {
+    const parts = role.split(' & ');
+    return `${parts[0]} <span class="role-sep">&</span> <em>${parts[1]}</em>`;
+  }
+  return role;
+}
 
 export function renderHero() {
   const p = CV_DATA.profile;
@@ -6,9 +18,9 @@ export function renderHero() {
     <div class="card c-dark" id="c1" data-i="0">
       <span class="cn">01/07</span>
       <div class="lbl" style="margin-bottom:14px">
-        <span class="pulse" style="display:inline-block;vertical-align:middle;margin-right:8px"></span>Senior / Lead
+        <span class="pulse" style="display:inline-block;vertical-align:middle;margin-right:8px"></span>${formatRole('Senior / Lead')}
       </div>
-      <h1 class="hero-name">${p.name}<br><em>${p.surname}</em></h1>
+      <h1 class="hero-name">${p.name} <em>${p.surname}</em></h1>
       <p class="hero-sub">Связующее звено между продуктовым видением и технической реальностью.</p>
       <p class="hero-quote">${p.quote}</p>
       <div class="tags" style="margin-bottom:28px">
@@ -44,13 +56,16 @@ export function renderExperience() {
         </div>
       `;
     }
+
+    const roleDisplay = formatRole(exp.role);
+
     return `
       <div class="card ${exp.theme}" id="c${num}" data-i="${num-1}">
         <span class="cn" style="color:#1a1a1a">0${num}/07</span>
         <div class="bg-logo">${exp.company}</div>
         <div class="lbl">${idx === 0 ? 'Сейчас · ' : ''}${exp.period}</div>
         <div class="now-body">
-          <h2 class="serif-h">${exp.role.replace(' / ', '/<br><em>').replace(' & ', '&<br><em>')}${exp.role.includes(' / ') || exp.role.includes(' & ') ? '</em>' : ''}</h2>
+          <h2 class="serif-h role-title">${roleDisplay}</h2>
           <p class="body-txt">${exp.desc}</p>
           <div class="tags">
             ${exp.tags.map(t => `<span class="tg">${t}</span>`).join('')}
@@ -68,7 +83,7 @@ export function renderCompetencies() {
       <span class="cn">05/07</span>
       <div class="lbl">${c.navLabel}</div>
       <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px">
-        <h2 class="serif-h">Сильные<br><em>стороны</em></h2>
+        <h2 class="serif-h">Сильные <em>стороны</em></h2>
         <div class="comp-grid">
           ${c.list.map(item => `
             <div class="comp-item">
@@ -107,7 +122,7 @@ export function renderContact() {
     <div class="card c-dark" id="c7" data-i="6">
       <span class="cn">07/07</span>
       <div class="lbl" style="margin-bottom:16px">Давайте работать вместе</div>
-      <h2 class="ct-hl">Готов к<br><em>новому</em><br>вызову</h2>
+      <h2 class="ct-hl">Готов к <em>новому</em> вызову</h2>
       <div class="ct-links">
         <a class="ct-a prim" href="${p.links[0].url}" target="_blank">↗ ${p.links[0].label}</a>
         <a class="ct-a" href="${p.links[1].url}" target="_blank">${p.links[1].label}</a>
@@ -126,7 +141,7 @@ export function renderBento() {
   return `
     <div class="bc bc-hero" data-target="0">
       <div class="bc-label">01 · Интро</div>
-      <div class="bc-title">${p.name}<br><em>${p.surname}</em></div>
+      <div class="bc-title">${p.name} <em>${p.surname}</em></div>
       <div class="bc-body" style="font-weight: 500; opacity: 0.8;">${p.roles.join(' · ')}</div>
       <div class="bc-tags">
         <span class="bc-tag">Senior</span>
@@ -137,7 +152,7 @@ export function renderBento() {
     <div class="bc bc-now" data-target="1">
       <div class="bc-label">02 · Сейчас</div>
       <div class="bc-title">${ex[0].company}</div>
-      <div class="bc-body" style="font-size: 11px; text-transform: uppercase; font-weight: bold; opacity: 0.7; margin-bottom: 8px; color: #1a1a1a; letter-spacing: 0.05em;">${ex[0].role}</div>
+      <div class="bc-body" style="font-size: 11px; text-transform: uppercase; font-weight: bold; opacity: 0.7; margin-bottom: 8px; color: #1a1a1a; letter-spacing: 0.05em;">${formatRole(ex[0].role)}</div>
       <div class="bc-body">${ex[0].bentoDesc}</div>
       <div class="bc-tags">
         ${ex[0].tags.map(t => `<span class="bc-tag">${t}</span>`).join('')}
@@ -181,17 +196,15 @@ export function renderBento() {
       </div>
       <!-- Mobile: Focused List -->
       <div class="bc-chips-compact" style="gap: 6px;">
-        ${st.categories[0].tools.slice(0,4).map(t => `<span class="bc-chip b">${t}</span>`).join('')}
-        ${st.categories[1].tools.slice(0,3).map(t => `<span class="bc-chip b">${t}</span>`).join('')}
-        <span class="bc-chip">Docker</span>
-        <span class="bc-chip">Agile</span>
-        <span class="bc-chip">PostgreSQL</span>
-        <span class="bc-chip">...</span>
+        ${st.categories[0].tools.slice(0, 5).map(t => `<span class="bc-chip b">${t}</span>`).join('')}
+        ${st.categories[1].tools.slice(0, 4).map(t => `<span class="bc-chip b">${t}</span>`).join('')}
+        ${st.categories[2].tools.slice(0, 3).map(t => `<span class="bc-chip">${t}</span>`).join('')}
+        <span class="bc-chip more">...</span>
       </div>
     </div>
     <div class="bc bc-contact" data-target="6">
       <div class="bc-contact-inner">
-        <div class="bc-title">Готов к новому вызову</div>
+        <div class="bc-title">Готов к <em>новому</em> вызову</div>
         <div class="bc-clinks">
           <a class="bc-cl p" href="${p.links[0].url}" target="_blank" onclick="event.stopPropagation()">↗ Telegram</a>
           <a class="bc-cl" href="${p.links[1].url}" target="_blank" onclick="event.stopPropagation()">LinkedIn</a>
