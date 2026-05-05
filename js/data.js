@@ -2,9 +2,9 @@ export const CV_DATA = {
   profile: {
     name: "Матвей",
     surname: "Борисов",
-    roles: ["Senior PM", "ИИ инженер", "Продуктовый Аналитик"],
+    roles: ["Senior PM", "AI Architect", "ИИ-инженер"],
     status: "Открыт для предложений · Senior/Lead",
-    quote: "Impact Engineering: проектирование ИИ-решений и автоматизации, напрямую влияющих на прибыль.",
+    quote: "Impact Engineering: проектирование LLM/RAG-систем, агентной оркестрации и автоматизации, напрямую влияющих на прибыль.",
     links: [
       { label: "Telegram", url: "https://t.me/MentalProtector" },
       { label: "LinkedIn", url: "https://www.linkedin.com/in/matvei-borisov-a0a4a5123/" }
@@ -15,12 +15,12 @@ export const CV_DATA = {
       id: "now",
       company: "alfatapes",
       period: "2025 — н.в.",
-      role: "Сооснователь & Инженер",
-      desc: "Проектирование автономных ИИ-агентов для автоматизации коммуникаций и любых бизнес-процессов. IT-консалтинг и быстрый запуск MVP.",
-      tags: ["ИИ-оркестрация", "Python", "LLM"],
+      role: "Сооснователь & AI Engineer",
+      desc: "Проектирование автономных ИИ-агентов, RAG-пайплайнов и LLM-оркестрации для автоматизации коммуникаций и бизнес-процессов. IT-консалтинг и быстрый запуск MVP.",
+      tags: ["RAG", "LangGraph", "LLM"],
       theme: "c-cream",
       navLabel: "Сейчас",
-      bentoDesc: "ИИ-агенты, IT-консалтинг и запуск MVP."
+      bentoDesc: "ИИ-агенты, RAG-пайплайны, IT-консалтинг и запуск MVP."
     },
     {
       id: "qugo",
@@ -68,12 +68,12 @@ export const CV_DATA = {
     navLabel: "Скиллы",
     theme: "c-slate",
     list: [
-      { name: "Impact Engineering", desc: "Внедрение ИИ-решений, напрямую влияющих на выручку и KPI бизнеса." },
-      { name: "ИИ-архитектура", desc: "Проектирование автономных мультиагентных систем и сложных LLM-пайплайнов." },
+      { name: "Impact Engineering", desc: "Внедрение ИИ-решений, напрямую влияющих на выручку, операционные затраты и KPI бизнеса." },
+      { name: "RAG и LLM-архитектура", desc: "Проектирование retrieval-пайплайнов с reranking, Qdrant, оценкой качества через RAGAS и агентной оркестрацией." },
       { name: "Масштабирование продуктов", desc: "Развитие MVP до систем с миллиардными оборотами и адаптация процессов под рост." },
       { name: "Стратегия на данных", desc: "Глубокая аналитика для поиска точек роста и формирования продуктового вектора." },
       { name: "Оптимизация систем", desc: "Перевод сложных монолитов на надежные микросервисы и современные стеки." },
-      { name: "Техническое лидерство", desc: "Синхронизация бизнес-целей с реализацией: от бэкенда до DevOps." }
+      { name: "Техническое лидерство", desc: "Синхронизация бизнес-целей с реализацией: от бэкенда и данных до DevOps и AI-инфраструктуры." }
     ]
   },
   stack: {
@@ -85,7 +85,7 @@ export const CV_DATA = {
     categories: [
       {
         name: "ИИ и Данные",
-        tools: ["Python", "LLM", "Agentic Workflows", "PyTorch", "PostgreSQL", "Redis"]
+        tools: ["Python", "LLM", "RAG", "LangGraph", "RAGAS", "Qdrant", "Cross-Encoder", "Reranking", "PyTorch", "Fine-tuning (learning)", "PostgreSQL", "Redis"]
       },
       {
         name: "Инфраструктура",
