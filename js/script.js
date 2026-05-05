@@ -1,5 +1,5 @@
-import { CV_DATA } from './data.js?v=2.4';
-import * as Components from './components.js?v=2.4';
+import { CV_DATA } from './data.js?v=2.5';
+import * as Components from './components.js?v=2.6';
 
 const haptics = {
   trigger: (type) => {
@@ -149,14 +149,18 @@ function goTo(i, instant = false) {
 
   const startScrollLeft = track.scrollLeft;
   const distance = targetScrollLeft - startScrollLeft;
-  const duration = 1200; 
+  const duration = 800; // Faster, more responsive
   let startTime = null;
 
   function step(currentTime) {
     if (startTime === null) startTime = currentTime;
     const timeElapsed = currentTime - startTime;
     const progress = Math.min(timeElapsed / duration, 1);
-    const ease = 1 - Math.pow(1 - progress, 3);
+    
+    // Quintic Ease Out: 1 - (1 - x)^5
+    // Faster start, much smoother finish
+    const ease = 1 - Math.pow(1 - progress, 5);
+    
     track.scrollLeft = startScrollLeft + distance * ease;
     if (timeElapsed < duration) requestAnimationFrame(step);
   }
