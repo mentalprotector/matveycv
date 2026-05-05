@@ -1,5 +1,5 @@
-import { CV_DATA } from './data.js?v=2.5';
-import * as Components from './components.js?v=2.6';
+import { CV_DATA } from './data.js?v=2.6';
+import * as Components from './components.js?v=2.7';
 
 const haptics = {
   trigger: (type) => {
@@ -29,14 +29,22 @@ let bentoItems = [];
 let cur = 0;
 let bentoOpen = false;
 let wheelLocked = false;
+let scrollFrame = 0;
+let swipeStartX = 0;
+let swipeStartY = 0;
+let swipeStartScrollLeft = 0;
+let swipeStartIndex = 0;
+let swipeTracking = false;
+let swipeLocked = false;
 
 // Initialization
 function init() {
   renderAll();
   setupNavigation();
-  setupObserver();
+  setupScrollSync();
   setupEventListeners();
-  setActive(0);
+  syncActiveFromScroll();
+  setActive(0, true);
 }
 
 function renderAll() {
@@ -90,27 +98,39 @@ function setupNavigation() {
   });
 }
 
-function setupObserver() {
-  const options = {
-    root: track,
-    threshold: 0.6,
-    rootMargin: '0px'
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const index = parseInt(entry.target.dataset.i);
-        if (index !== cur) setActive(index);
-      }
-    });
-  }, options);
-
-  cards.forEach(card => observer.observe(card));
+function setupScrollSync() {
+  track.addEventListener('scroll', requestScrollSync, { passive: true });
 }
 
-function setActive(i) {
-  if (i !== cur && !bentoOpen) {
+function requestScrollSync() {
+  if (scrollFrame) return;
+  scrollFrame = requestAnimationFrame(() => {
+    scrollFrame = 0;
+    syncActiveFromScroll();
+  });
+}
+
+function syncActiveFromScroll() {
+  if (!cards.length) return;
+
+  const center = track.scrollLeft + track.offsetWidth / 2;
+  let closestIndex = cur;
+  let closestDistance = Infinity;
+
+  cards.forEach((card, i) => {
+    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+    const distance = Math.abs(cardCenter - center);
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closestIndex = i;
+    }
+  });
+
+  if (!bentoOpen && closestIndex !== cur) setActive(closestIndex);
+}
+
+function setActive(i, silent = false) {
+  if (i !== cur && !bentoOpen && !silent) {
     if (i > cur) {
       haptics.trigger('nudge');
     } else {
@@ -143,7 +163,8 @@ function goTo(i, instant = false) {
   
   if (instant) {
     track.scrollLeft = targetScrollLeft;
-    setActive(targetIdx);
+    syncActiveFromScroll();
+    setActive(targetIdx, true);
     return;
   }
 
@@ -162,6 +183,7 @@ function goTo(i, instant = false) {
     const ease = 1 - Math.pow(1 - progress, 5);
     
     track.scrollLeft = startScrollLeft + distance * ease;
+    syncActiveFromScroll();
     if (timeElapsed < duration) requestAnimationFrame(step);
   }
 
@@ -275,7 +297,36 @@ function setupEventListeners() {
     if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(cur - 1);
   });
 
-  window.addEventListener('resize', () => goTo(cur, true));
+  window.addEventListener('resize', () => {
+    goTo(cur, true);
+    syncActiveFromScroll();
+  });
+
+  track.addEventListener('pointerdown', e => {
+    if (bentoOpen || e.button > 0) return;
+    swipeTracking = true;
+    swipeLocked = false;
+    swipeStartX = e.clientX;
+    swipeStartY = e.clientY;
+    swipeStartScrollLeft = track.scrollLeft;
+    swipeStartIndex = cur;
+  }, { passive: true });
+
+  track.addEventListener('pointermove', e => {
+    if (!swipeTracking || bentoOpen) return;
+    const dx = e.clientX - swipeStartX;
+    const dy = e.clientY - swipeStartY;
+    if (!swipeLocked && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+      swipeLocked = true;
+      track.setPointerCapture?.(e.pointerId);
+    }
+    if (!swipeLocked) return;
+    e.preventDefault();
+    track.scrollLeft = swipeStartScrollLeft - dx;
+  });
+
+  track.addEventListener('pointerup', finishSwipe);
+  track.addEventListener('pointercancel', finishSwipe);
 
   track.addEventListener('wheel', e => {
     if (bentoOpen || window.innerWidth < 1024) return;
@@ -295,6 +346,23 @@ function setupEventListeners() {
       closeBento(target);
     });
   });
+}
+
+function finishSwipe(e) {
+  if (!swipeTracking) return;
+  const dx = e.clientX - swipeStartX;
+  const threshold = Math.min(120, Math.max(56, track.offsetWidth * 0.12));
+  swipeTracking = false;
+
+  if (!swipeLocked) return;
+  track.releasePointerCapture?.(e.pointerId);
+
+  if (Math.abs(dx) > threshold) {
+    goTo(swipeStartIndex + (dx < 0 ? 1 : -1));
+    return;
+  }
+
+  goTo(swipeStartIndex);
 }
 
 // Kick off
