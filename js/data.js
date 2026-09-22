@@ -4,7 +4,7 @@ export const CV_DATA = {
     surname: "Борисов",
     roles: ["Senior PM", "AI Architect", "ИИ-инженер"],
     status: "Открыт для предложений · Senior/Lead",
-    quote: "Impact Engineering: проектирование LLM/RAG-систем, агентной оркестрации и автоматизации, напрямую влияющих на прибыль.",
+    quote: "Проектирую и запускаю ИИ-продукты, которые автоматизируют работу, сокращают издержки и создают новые точки роста.",
     links: [
       { label: "Telegram", url: "https://t.me/MentalProtector" },
       { label: "LinkedIn", url: "https://www.linkedin.com/in/matvei-borisov-a0a4a5123/" }
@@ -16,11 +16,11 @@ export const CV_DATA = {
       company: "alfatapes",
       period: "2025 — н.в.",
       role: "Сооснователь & AI Engineer",
-      desc: "Проектирование автономных ИИ-агентов, RAG-пайплайнов и LLM-оркестрации для автоматизации коммуникаций и бизнес-процессов. IT-консалтинг и быстрый запуск MVP.",
-      tags: ["RAG", "LangGraph", "LLM"],
+      desc: "Создание ИИ-продуктов и агентных систем для автоматизации коммуникаций и бизнес-процессов — от поиска идеи и проектирования до внедрения и развития. IT-консалтинг и техническое сопровождение.",
+      tags: ["AI Products", "Automation", "Delivery"],
       theme: "c-cream",
       navLabel: "Сейчас",
-      bentoDesc: "ИИ-агенты, RAG-пайплайны, IT-консалтинг и запуск MVP."
+      bentoDesc: "ИИ-продукты, автоматизация, IT-консалтинг и развитие решений."
     },
     {
       id: "qugo",
@@ -69,7 +69,7 @@ export const CV_DATA = {
     theme: "c-slate",
     list: [
       { name: "Impact Engineering", desc: "Внедрение ИИ-решений, напрямую влияющих на выручку, операционные затраты и KPI бизнеса." },
-      { name: "RAG и LLM-архитектура", desc: "Проектирование retrieval-пайплайнов с reranking, Qdrant, оценкой качества через RAGAS и агентной оркестрацией." },
+      { name: "ИИ-продукты и автоматизация", desc: "Проектирование и запуск прикладных ИИ-систем: агентные сценарии, интеграции, работа с данными и LLM." },
       { name: "Масштабирование продуктов", desc: "Развитие MVP до систем с миллиардными оборотами и адаптация процессов под рост." },
       { name: "Стратегия на данных", desc: "Глубокая аналитика для поиска точек роста и формирования продуктового вектора." },
       { name: "Оптимизация систем", desc: "Перевод сложных монолитов на надежные микросервисы и современные стеки." },
@@ -85,7 +85,7 @@ export const CV_DATA = {
     categories: [
       {
         name: "ИИ и Данные",
-        tools: ["Python", "LLM", "RAG", "LangGraph", "RAGAS", "Qdrant", "Cross-Encoder", "Reranking", "PyTorch", "Fine-tuning (learning)", "PostgreSQL", "Redis"]
+        tools: ["Python", "LLM", "AI Agents", "LangGraph", "AI Integrations", "PyTorch", "PostgreSQL", "Redis"]
       },
       {
         name: "Инфраструктура",

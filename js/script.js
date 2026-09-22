@@ -1,4 +1,4 @@
-import { CV_DATA } from './data.js?v=2.6';
+import { CV_DATA } from './data.js?v=2.7';
 import * as Components from './components.js?v=2.7';
 
 const haptics = {
